@@ -9,10 +9,10 @@
       <b-modal v-bind:id="String(x)" title="Descrição">
         <div class="">
           {{x}}. {{artist.name}} {{artist.country}} <br>
-          {{msg.name}} <br> {{msg.country}} <br>
+          <!-- {{msg.name}} <br> {{msg.country}} <br> -->
           <input class="input" type="text" v-model="itemText2.name" placeholder="Adicione um artista!">
           <input class="input" type="text" v-model="itemText2.country" placeholder="Adicione a cidade dele!" />
-          <button class="button is-primary is-medium" @click="changeMsg2">Adicionar!</button>
+          <button class="button is-primary is-medium" @click="[changeMsg2(), changeItem(x)]">Editar!</button>
         </div>
       </b-modal>
     </li>
@@ -38,8 +38,16 @@ export default {
       // this.$parent.addItem()
       this.itemText2 = {name: '', country:''};
     },
-    removeItem: function(x) {
-      this.$parent.removeItem(x);
+    removeItem: function(evt) {
+      this.$parent.removeItem(evt);
+    },
+    changeItem: function(evt) {
+      this.$parent.changeItem(evt);
+      var itemTextContent2
+      itemTextContent2 = this.itemText2
+      if(!itemTextContent2){return;}
+      this.itemText2 = {name: '', country:''}
+      console.log(evt)
     }
   }
 }

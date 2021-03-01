@@ -31,8 +31,8 @@ export default {
       itemText2: {name: '', country: ''},
       artists: [
        {name: 'Davido', genre: 'afrobeats', country: 'Nigeria'},
-       // {name: 'Burna Boy', genre: 'afrobeats', country: 'Nigeria'},
-       // {name: 'AKA', genre: 'hiphop', country: 'South-Africa'},
+       {name: 'Burna Boy', genre: 'afrobeats', country: 'Nigeria'},
+       {name: 'AKA', genre: 'hiphop', country: 'South-Africa'},
        // {name: 'Sarkodie', genre: 'hiphop', country: 'Ghana'},
        // {name: 'Stormzy', genre: 'hiphop', country: 'United Kingdom'},
        // {name: 'Lil Nas', genre: 'Country', country: 'United States'},
@@ -69,8 +69,16 @@ export default {
     this.artists.splice(x, 1);
     // console.log(String(x))
   },
+  changeItem: function(x) {
+    var itemTextContent2
+    itemTextContent2 = this.itemText2
+    if(!itemTextContent2){return;}
+    this.artists.splice(x, 1, itemTextContent2);
+    // this.itemText2 = {name: '', country:''}
+  },
   setMessage: function(msg) {
     this.itemText2 = msg;
+    console.log('teste123')
   },
 }
 }
