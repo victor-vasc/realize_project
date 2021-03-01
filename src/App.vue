@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
+    <Navbar/>
+    <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
     <!-- <Test v-bind:metas="metas"/> -->
     <div>
-  <b-button v-b-modal.modal-1>Adicionar Meta</b-button>
   <b-modal id="modal-1" title="BootstrapVue">
    <template #default="{ ok }">
     <p class="my  -4">
@@ -15,16 +15,20 @@
   </b-modal>
 </div>
     <Test2 v-bind:metas="metas" @changeMsg3="setMessage" :msg="itemText2"/>
+  <!-- <Navbar class="mt-5" /> -->
   </div>
 </template>
 <script>
 // import Test from './components/Test.vue'
 import Test2 from './components/Test2'
+import Navbar from './components/Navbar'
+
 export default {
   nome: 'app',
   components: {
     // Test,
     Test2,
+    Navbar,
   },
   data (){
     return {

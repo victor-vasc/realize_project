@@ -1,27 +1,45 @@
 <template>
 <div>
   <h1>Metas</h1>
-  <ul>
-    <li v-for="(meta, x) in metas" :key="x" class="justify-content-between">
-      <button v-b-modal="String(x)" class="btn btn-primary btn-sm">Expandir</button>
-      <h3>{{x}} - {{meta.nome}}</h3>
-      <button v-on:click="removeItem(x)" class="btn btn-primary btn-sm">x</button>
-      <b-modal v-bind:id="String(x)" title="Descrição">
-        <div class="">
-          {{x}}. {{meta.nome}}<br>
-          <!-- {{msg.nome}} <br> {{msg.country}} <br> -->
-          <input class="input" type="text" v-model="itemText2.nome" placeholder="Adicione um meta!">
-          <!-- <input class="input" type="text" v-model="itemText2.country" placeholder="Adicione a cidade dele!" /> -->
-          <button class="button is-primary is-medium" @click="[changeMsg2(), changeItem(x)]">Confirmar!</button>
-        </div>
-      </b-modal>
-    </li>
-  </ul>
+  <b-list-group>
+    <b-list-group-item  v-for="(meta, x) in metas" :key="x" class="justify-content-between">
+      <div>
+        <b-card no-body class="overflow-hidden" style="max-width: 540px;">
+          <b-row no-gutters>
+            <b-col md="6">
+              <!-- <b-card-img src="https://picsum.photos/400/400/?image=20" alt="Image" class="rounded-0"></b-card-img> -->
+            </b-col>
+            <b-col md="6">
+              <b-card-body v-bind:title="meta.nome">
+                <!-- <b-card-text>
+                  This is a wider card with supporting text as a natural lead-in to additional content.
+                  This content is a little bit longer.
+                </b-card-text> -->
+                <b-button variant="primary" v-b-modal="String(x)" class="btn btn-primary btn-sm">Expandir</b-button>
+                <b-modal v-bind:id="String(x)" title="Descrição">
+                  <template #modal-header="{ close }">
+                    <!-- Emulate built in modal header close button action -->
+                    <h5>Descrição</h5>
+                      <b-button variant="link" size="sm" v-on:click="removeItem(x); close()"><b-icon v-b-modal.modal-1 font-scale="2" icon="x" aria-label="Add"></b-icon></b-button>
+                  </template>
+                  <div class="">
+                    {{meta.nome}}<br>
+                    <b-form-input class="input" type="text" v-model="itemText2.nome" v-bind:placeholder="meta.nome"></b-form-input>
+                    <b-button variant="primary" class="button is-primary is-medium" @click="[changeMsg2(), changeItem(x)]">Confirmar!</b-button>                  </div>
+
+                </b-modal>
+              </b-card-body>
+            </b-col>
+          </b-row>
+        </b-card>
+      </div>
+    </b-list-group-item >
+  </b-list-group>
 </div>
 </template>
 <script>
 export default {
-  nome: 'Test2',
+  name: 'Test2',
   data() {
     return {
     itemText2: {nome: ''}
@@ -53,7 +71,7 @@ export default {
 }
 </script>
 <style scoped>
-li {
+/* li {
   height: 40px;
   width: 100%;
   padding: 15px;
@@ -65,5 +83,5 @@ li {
 
 a {
   color: #42b983;
-}
+} */
 </style>
