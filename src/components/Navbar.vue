@@ -1,8 +1,8 @@
 <template lang="html">
-  <div>
+  <div style="margin-bottom: 56px">
   <b-navbar toggleable="lg" type="dark" fixed="top" variant="info">
-    <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-    <b-navbar-brand href="#">NavBar</b-navbar-brand>
+    <b-navbar-toggle disabled target="nav-collapse"></b-navbar-toggle>
+    <b-navbar-brand href="#">Realize App</b-navbar-brand>
       <b-icon v-b-modal.modal-1 font-scale="2" icon="plus" variant="light" aria-label="Add"></b-icon>
 
     <b-collapse id="nav-collapse" is-nav>
