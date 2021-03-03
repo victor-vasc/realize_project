@@ -1,7 +1,6 @@
 <template>
 <div id="app">
   <Navbar />
-  <div>
     <b-modal id="modal-1" title="BootstrapVue">
       <template #default="{ ok }">
         <p class="my  -4">
@@ -10,24 +9,23 @@
         </p>
       </template>
     </b-modal>
-  </div>
-  <b-container>
-    <div class="custom-navbar d-flex justify-content-center justify-content-sm-start">
-      <b-nav tabs class="align-bottom d-flex align-items-end">
-        <b-nav-item v-for="tab in tabs"
-                    v-bind:key="tab.name"
-                    v-bind:class="['tab-button', { active: currentTab.name === tab.name }]"
-                    v-on:click="currentTab = tab"
-                    class="mt-1 mb-2 mr-2 subtitle align-bottom "
-                    variant="dark"
+  <b-container style="margin: 86px 0">
+    <keep-alive>
+      <component :is="currentTab.component.principal" v-bind="{...currentTab.component.props}" v-on:changeMsg3="setMessage" class="tab"></component>
+    </keep-alive>
+    <b-navbar fixed="bottom" toggleable="lg" variant="info">
+      <b-nav class="border-0 w-100 justify-content-between">
+        <b-nav-item style="max-heignt: 56px" class="m-0" type="dark"
+          v-for="tab in tabs"
+          v-bind:key="tab.name"
+          v-bind:class="['tab-button', { active: currentTab.name === tab.name }]"
+          v-on:click="currentTab = tab"
         >
-          {{ tab.name }}
+          <h5 class="mb-1 text-center"><b-icon style="width: 21px; height: 21px;" :icon="tab.tabIcon"></b-icon></h5>
+          <h6 class="mb-0" style="font-size: 0.85em">{{ tab.name }}</h6>
         </b-nav-item>
       </b-nav>
-    </div>
-    <keep-alive>
-      <component :is="currentTab.component.component" v-bind="{...currentTab.component.props}" v-on="{...currentTab.component.methods}" class="tab"></component>
-    </keep-alive>
+    </b-navbar>
   </b-container>
   <!-- <Test2 v-bind:metas="metas" v-on:changeMsg3="setMessage" :msg="itemText2" /> -->
 </div>
@@ -51,19 +49,22 @@ var metas = [{
       ];
 var itemText2 = {
         nome: ''
-      }
-function setMessage(msg){
-      itemText2 = msg;
-      console.log('MEU DEUS FUNCIONA CARALHO', msg)
-    }
+      };
 var tabs = [{
-    name: "Dashboard",
-    component: { component: Test2, props: {metas: metas, msg: itemText2}, methods: {changeMsg3: setMessage}},
+    name: "Home",
+    tabIcon: "house-door-fill",
+    component: { principal: Test2, props: {metas: metas, msg: itemText2}},
   },
   {
-    name: "Resultado da busca",
-    component:  { component: HelloWorld2, props: {msg: "TESTE"}},
+    name: "Metas",
+    tabIcon: "list-ul",
+    component:  { principal: HelloWorld2, props: {msg: "TESTE"}},
   },
+  {
+    name: "Contato",
+    tabIcon: "chat-left-text-fill",
+    component:  { principal: HelloWorld, props: {msg: "TESTE"}},
+  }
 ];
 export default {
   nome: 'app',
@@ -109,7 +110,10 @@ export default {
       this.metas.splice(x, 1, itemTextContent2);
       // this.itemText2 = {nome: '', country:''}
     },
-    setMessage: setMessage
+    setMessage: function(msg) {
+      this.itemText2 = msg;
+      console.log('teste123')
+    },
   }
 }
 </script>
@@ -120,5 +124,14 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+}
+.tab-button > a{
+  color:rgba(255,255,255,0.7);
+  padding-bottom: 0;
+  padding-top: 0;
+
+}
+.active > a{
+  color:white;
 }
 </style>
