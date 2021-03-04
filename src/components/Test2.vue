@@ -1,6 +1,32 @@
 <template>
 <div>
   <!-- <h1>Metas</h1> -->
+  <Navbar />
+    <b-modal centered id="modal-1">
+      <template #modal-title>
+        Adicionar nova meta
+      </template>
+      <!-- <template #default="{ ok }">
+        <p class="my  -4">
+          <b-input input type="text" v-model="itemText.nome" placeholder="Adicione um meta!"></b-input>
+          <b-button v-on:click="ok()" variant="primary" class="btn btn-primary btn-sm">Adicionar</b-button>
+        </p>
+      </template> -->
+      <div class="">
+        <h5>Nome da meta:</h5>
+        <b-input input type="text" v-model="itemText.nome" placeholder="Adicione um meta!"></b-input>
+      </div>
+      <template #modal-footer="{ ok, cancel}">
+        <!-- <b>Custom Footer</b> -->
+        <!-- Emulate built in modal footer ok and cancel button actions -->
+        <b-button size="sm" variant="primary" @click="ok(), addItem()">
+          Adicionar
+        </b-button>
+        <b-button size="sm" variant="secondary" @click="cancel()">
+          Cancelar
+        </b-button>
+      </template>
+    </b-modal>
   <b-list-group>
     <b-list-group-item v-for="(meta, x) in metas" :key="x" class="justify-content-between">
       <div>
@@ -40,27 +66,40 @@
 </div>
 </template>
 <script>
+import Navbar from './Navbar'
 export default {
   name: 'Test2',
+  components: {
+    // Test,
+    Navbar,
+  },
   data() {
     return {
       itemText2: {
+        nome: ''
+      },
+      itemText: {
         nome: ''
       }
     }
   },
   props: {
-    msg: Object,
     metas: Array,
   },
   methods: {
     changeMsg2() {
       this.$emit("changeMsg3", this.itemText2);
       console.log('message emit from child component');
-      // this.$parent.addItem()
       this.itemText2 = {
         nome: ''
-      };
+      }
+    },
+    addItem: function(){
+      this.$emit("changeMsg3", this.itemText);
+      this.$parent.addItem()
+      this.itemText = {
+        nome: ''
+      }
     },
     removeItem: function(evt) {
       this.$parent.removeItem(evt);

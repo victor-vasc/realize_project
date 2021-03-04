@@ -1,14 +1,5 @@
 <template>
 <div id="app">
-  <Navbar />
-    <b-modal id="modal-1" title="BootstrapVue">
-      <template #default="{ ok }">
-        <p class="my  -4">
-          <b-input input type="text" v-model="itemText.nome" placeholder="Adicione um meta!"></b-input>
-          <b-button v-on:click="addItem(), ok()" variant="primary" class="btn btn-primary btn-sm">Adicionar</b-button>
-        </p>
-      </template>
-    </b-modal>
   <b-container style="margin: 86px 0">
     <keep-alive>
       <component :is="currentTab.component.principal" v-bind="{...currentTab.component.props}" v-on:changeMsg3="setMessage" class="tab"></component>
@@ -33,7 +24,6 @@
 <script>
 // import Test from './components/Test.vue'
 import Test2 from './components/Test2'
-import Navbar from './components/Navbar'
 import HelloWorld2 from './components/HelloWorld2'
 import HelloWorld from './components/HelloWorld'
 
@@ -50,10 +40,13 @@ var metas = [{
 var itemText2 = {
         nome: ''
       };
+var itemText = {
+        nome: ''
+      };
 var tabs = [{
     name: "Home",
     tabIcon: "house-door-fill",
-    component: { principal: Test2, props: {metas: metas, msg: itemText2}},
+    component: { principal: Test2, props: {metas: metas, msg:itemText2}},
   },
   {
     name: "Metas",
@@ -71,7 +64,6 @@ export default {
   components: {
     // Test,
     Test2,
-    Navbar,
     HelloWorld2
   },
   data() {
@@ -80,9 +72,7 @@ export default {
       metas: metas,
       currentTab: tabs[0],
       itemText2: itemText2,
-      itemText: {
-        nome: ''
-      }
+      itemText: itemText,
     }
   },
   methods: {
@@ -112,7 +102,8 @@ export default {
     },
     setMessage: function(msg) {
       this.itemText2 = msg;
-      console.log('teste123')
+      this.itemText = msg;
+      console.log("valor presente na propriedade", msg)
     },
   }
 }
