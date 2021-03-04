@@ -6,11 +6,72 @@
       <template #modal-title>
         Adicionar nova meta
       </template>
-      <div class="">
-        <MetaFormulario/>
-        <!-- <h5>Nome da meta:</h5>
-        <b-input input type="text" v-model="itemText.nome" placeholder="Adicione um meta!"></b-input> -->
-      </div>
+      <b-container>
+        <div>
+          <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+            <b-form-group
+              id="input-group-1"
+              label="Nome da meta:"
+              label-for="input-1"
+              description="Insira o nome da meta desejada nesse campo."
+            >
+              <b-form-input
+                id="input-1"
+                v-model="form.meta"
+                type="text"
+                placeholder="Insira sua meta!"
+                required
+              ></b-form-input>
+            </b-form-group>
+
+            <b-form-group
+              id="input-group-2"
+              label="Descrição da meta:"
+              label-for="input-2">
+              <!-- <b-form-input
+                id="input-2"
+                v-model="form.name"
+                placeholder="Enter name"
+                required
+              ></b-form-input> -->
+              <b-form-textarea
+                id="input-2"
+                v-model="form.descricao"
+                placeholder="Insira a descrição de sua meta..."
+                rows="3"
+                max-rows="6"
+                optional
+              ></b-form-textarea>
+            </b-form-group>
+
+            <!-- <b-form-group id="input-group-3" label="Food:" label-for="input-3">
+              <b-form-select
+                id="input-3"
+                v-model="form.food"
+                :options="foods"
+                required
+              ></b-form-select>
+            </b-form-group> -->
+
+            <!-- <b-form-group id="input-group-4" v-slot="{ ariaDescribedby }">
+              <b-form-checkbox-group
+                v-model="form.checked"
+                id="checkboxes-4"
+                :aria-describedby="ariaDescribedby"
+              >
+                <b-form-checkbox value="me">Check me out</b-form-checkbox>
+                <b-form-checkbox value="that">Check that out</b-form-checkbox>
+              </b-form-checkbox-group>
+            </b-form-group> -->
+
+            <b-button type="submit" variant="primary">Submit</b-button>
+            <b-button type="reset" variant="danger">Reset</b-button>
+          </b-form>
+          <b-card class="mt-3" header="Form Data Result">
+            <pre class="m-0">{{ form }}</pre>
+          </b-card>
+        </div>
+      </b-container>
       <template #modal-footer="{ ok, cancel}">
         <b-button size="sm" variant="primary" @click="ok(), addItem()">
           Adicionar
@@ -45,6 +106,7 @@
                   </template>
                   <div class="">
                     {{meta.nome}}<br>
+                    {{meta.descricao}}
                     <b-form-input class="input" type="text" v-model="itemText2.nome" v-bind:placeholder="meta.nome"></b-form-input>
                     <b-button variant="primary" class="button is-primary is-medium" @click="[changeMsg2(), changeItem(x)]">Confirmar!</b-button>
                   </div>
@@ -60,22 +122,30 @@
 </template>
 <script>
 import Navbar from './Navbar'
-import MetaFormulario from './MetaFormulario'
 export default {
   name: 'Test2',
   components: {
     // Test,
     Navbar,
-    MetaFormulario,
   },
   data() {
     return {
       itemText2: {
-        nome: ''
+        nome: '',
+        descricao: '',
       },
       itemText: {
-        nome: ''
-      }
+        nome: '',
+        descricao: '',
+      },
+      form: {
+        meta: '',
+        descricao: '',
+        food: null,
+        checked: []
+      },
+      foods: [{ text: 'Select One', value: null }, 'Carrots', 'Beans', 'Tomatoes', 'Corn'],
+      show: true
     }
   },
   props: {
@@ -90,6 +160,7 @@ export default {
       }
     },
     addItem: function(){
+      console.log(this.form.meta)
       // this.$emit("changeMsg3", this.itemText);
       // this.$parent.addItem()
       // this.itemText = {
@@ -110,6 +181,23 @@ export default {
         nome: ''
       }
       console.log(evt)
+    },
+    onSubmit(event) {
+      event.preventDefault()
+      alert(JSON.stringify(this.form))
+    },
+    onReset(event) {
+      event.preventDefault()
+      // Reset our form values
+      this.form.meta = ''
+      this.form.descricao = ''
+      this.form.food = null
+      this.form.checked = []
+      // Trick to reset/clear native browser form validation state
+      this.show = false
+      this.$nextTick(() => {
+        this.show = true
+      })
     }
   }
 }

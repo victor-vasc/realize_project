@@ -28,7 +28,8 @@ import HelloWorld2 from './components/HelloWorld2'
 import HelloWorld from './components/HelloWorld'
 
 var metas = [{
-          nome: 'Fazer um bolo de chocolate'
+          nome: 'Fazer um bolo de chocolate',
+          descricao: 'É muito gostoso!',
         },
         {
           nome: 'Aprender como gerir uma confeitaria'

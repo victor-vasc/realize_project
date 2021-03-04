@@ -9,7 +9,7 @@
       >
         <b-form-input
           id="input-1"
-          v-model="form.meta"
+          v-model="form.nome"
           type="text"
           placeholder="Insira sua meta!"
           required
@@ -70,8 +70,8 @@
     name: "MetaFormulario",
     data() {
       return {
-        form: {
-          meta: '',
+        meta: {
+          nome: '',
           descricao: '',
           food: null,
           checked: []
@@ -88,7 +88,7 @@
       onReset(event) {
         event.preventDefault()
         // Reset our form values
-        this.form.meta = ''
+        this.form.nome = ''
         this.form.descricao = ''
         this.form.food = null
         this.form.checked = []
