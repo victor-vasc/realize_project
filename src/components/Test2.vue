@@ -17,7 +17,7 @@
             >
               <b-form-input
                 id="input-1"
-                v-model="form.meta"
+                v-model="meta.nome"
                 type="text"
                 placeholder="Insira sua meta!"
                 required
@@ -36,7 +36,7 @@
               ></b-form-input> -->
               <b-form-textarea
                 id="input-2"
-                v-model="form.descricao"
+                v-model="meta.descricao"
                 placeholder="Insira a descrição de sua meta..."
                 rows="3"
                 max-rows="6"
@@ -67,11 +67,13 @@
             <b-button type="submit" variant="primary">Submit</b-button>
             <b-button type="reset" variant="danger">Reset</b-button>
           </b-form>
+
           <b-card class="mt-3" header="Form Data Result">
-            <pre class="m-0">{{ form }}</pre>
+            <pre class="m-0">{{ meta }}</pre>
           </b-card>
         </div>
       </b-container>
+
       <template #modal-footer="{ ok, cancel}">
         <b-button size="sm" variant="primary" @click="ok(), addItem()">
           Adicionar
@@ -81,6 +83,7 @@
         </b-button>
       </template>
     </b-modal>
+
   <b-list-group>
     <b-list-group-item v-for="(meta, x) in metas" :key="x" class="justify-content-between">
       <div>
@@ -96,19 +99,17 @@
                   This content is a little bit longer.
                 </b-card-text> -->
                 <!-- <b-button variant="primary" v-b-modal="String(x)" class="btn btn-primary btn-sm">Expandir</b-button> -->
-                <b-modal v-bind:id="String(x)" title="Descrição">
+                <b-modal centered v-bind:id="String(x)" title="Descrição">
                   <template #modal-header="{ close }">
                     <!-- Emulate built in modal header close button action -->
                     <h5>Descrição</h5>
-                    <b-button variant="link" size="sm" v-on:click="removeItem(x); close()">
-                      <b-icon v-b-modal.modal-1 font-scale="2" icon="x" aria-label="Add"></b-icon>
-                    </b-button>
+                      <b-icon font-scale="1.6" icon="trash" text="dark" aria-label="Remove" v-on:click="removeItem(x), close()"></b-icon>
                   </template>
                   <div class="">
                     {{meta.nome}}<br>
                     {{meta.descricao}}
-                    <b-form-input class="input" type="text" v-model="itemText2.nome" v-bind:placeholder="meta.nome"></b-form-input>
-                    <b-button variant="primary" class="button is-primary is-medium" @click="[changeMsg2(), changeItem(x)]">Confirmar!</b-button>
+                    <!-- <b-form-input class="input" type="text" v-model="itemText2.nome" v-bind:placeholder="meta.nome"></b-form-input> -->
+                    <!-- <b-button variant="primary" class="button is-primary is-medium" @click="[changeMsg2(), changeItem(x)]">Confirmar!</b-button> -->
                   </div>
                 </b-modal>
               </b-card-body>
@@ -134,12 +135,8 @@ export default {
         nome: '',
         descricao: '',
       },
-      itemText: {
+      meta: {
         nome: '',
-        descricao: '',
-      },
-      form: {
-        meta: '',
         descricao: '',
         food: null,
         checked: []
@@ -160,12 +157,12 @@ export default {
       }
     },
     addItem: function(){
-      console.log(this.form.meta)
-      // this.$emit("changeMsg3", this.itemText);
-      // this.$parent.addItem()
-      // this.itemText = {
-      //   nome: ''
-      // }
+      console.log(this.meta.nome);
+      this.$emit("changeMsg3", this.meta);
+      this.$parent.addItem()
+      this.meta = {
+        nome: ''
+      }
     },
     removeItem: function(evt) {
       this.$parent.removeItem(evt);
@@ -184,15 +181,15 @@ export default {
     },
     onSubmit(event) {
       event.preventDefault()
-      alert(JSON.stringify(this.form))
+      alert(JSON.stringify(this.meta))
     },
     onReset(event) {
       event.preventDefault()
       // Reset our form values
-      this.form.meta = ''
-      this.form.descricao = ''
-      this.form.food = null
-      this.form.checked = []
+      this.meta.nome = ''
+      this.meta.descricao = ''
+      this.meta.food = null
+      this.meta.checked = []
       // Trick to reset/clear native browser form validation state
       this.show = false
       this.$nextTick(() => {
