@@ -6,12 +6,11 @@
       <template #modal-title>
         Adicionar nova meta
       </template>
-      <b-container>
         <div>
           <b-form>
             <b-form-group
               id="input-group-1"
-              label="Nome da meta:"
+              label="Definição da meta:"
               label-for="input-1"
               description="Insira o nome da meta desejada nesse campo."
             >
@@ -27,23 +26,49 @@
             <b-form-group
               id="input-group-2"
               label="Descrição da meta:"
-              label-for="input-2">
-              <!-- <b-form-input
-                id="input-2"
-                v-model="form.name"
-                placeholder="Enter name"
-                required
-              ></b-form-input> -->
+              label-for="input-2"
+              >
               <b-form-textarea
                 id="input-2"
                 v-model="meta.descricao"
-                placeholder="Insira a descrição de sua meta..."
+                placeholder="Descrição de sua meta..."
                 rows="3"
                 max-rows="6"
                 optional
               ></b-form-textarea>
             </b-form-group>
 
+            <hr>
+            <b-card>
+            <b-form-group
+              id="input-group-1"
+              label="Definição das metas secundários"
+              label-for="input-1"
+              description="Insira a definição de suas metas secundárias!"
+            >
+              <b-form-input
+                id="input-1"
+                type="text"
+                placeholder="Insira sua meta!"
+                required
+              ></b-form-input>
+            </b-form-group>
+
+            <b-form-group
+              id="input-group-2"
+              label="Descrição da meta secundária:"
+              label-for="input-2"
+              >
+              <b-form-textarea
+                id="input-2"
+                placeholder="Descrição da meta secundária..."
+                rows="3"
+                max-rows="6"
+                optional
+              ></b-form-textarea>
+            </b-form-group>
+            <b-button class="float-right" type="submit" variant="primary">Adicionar</b-button>
+          </b-card>
             <!-- <b-form-group id="input-group-3" label="Food:" label-for="input-3">
               <b-form-select
                 id="input-3"
@@ -72,7 +97,6 @@
             <pre class="m-0">{{ meta }}</pre>
           </b-card>
         </div>
-      </b-container>
 
       <template #modal-footer="{ ok, cancel}">
         <b-button type="submit" size="sm" variant="primary" @click="ok(), addItem()">
@@ -98,18 +122,15 @@
                   This is a wider card with supporting text as a natural lead-in to additional content.
                   This content is a little bit longer.
                 </b-card-text> -->
-                <!-- <b-button variant="primary" v-b-modal="String(x)" class="btn btn-primary btn-sm">Expandir</b-button> -->
+
                 <b-modal centered v-bind:id="String(x)" title="Descrição">
                   <template #modal-header="{ close }">
                     <!-- Emulate built in modal header close button action -->
                     <h5>Descrição</h5>
                       <b-icon font-scale="1.6" icon="trash" text="dark" aria-label="Remove" v-on:click="removeItem(x), close()"></b-icon>
                   </template>
-                  <div class="">
-                    {{meta.nome}}<br>
-                    {{meta.descricao}}
-                    <!-- <b-form-input class="input" type="text" v-model="itemText2.nome" v-bind:placeholder="meta.nome"></b-form-input> -->
-                    <!-- <b-button variant="primary" class="button is-primary is-medium" @click="[changeMsg2(), changeItem(x)]">Confirmar!</b-button> -->
+                  <div class="" v-for="(metaSec, y) in meta" :key="y">
+                    {{metaSec.descricao}}
                   </div>
                 </b-modal>
               </b-card-body>
@@ -138,8 +159,10 @@ export default {
       meta: {
         nome: '',
         descricao: '',
-        food: null,
-        checked: []
+        metaSec:{
+          nome:'teste',
+          descricao: 'teste',
+        }
       },
     }
   },

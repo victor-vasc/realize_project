@@ -30,12 +30,26 @@ import HelloWorld from './components/HelloWorld'
 var metas = [{
           nome: 'Fazer um bolo de chocolate',
           descricao: 'É muito gostoso!',
+          metaSec:{
+            nome:"teste",
+            descricao:"teste descricao"
+          }
         },
         {
-          nome: 'Aprender como gerir uma confeitaria'
+          nome: 'Aprender como gerir uma confeitaria',
+          descricao: 'É muito dificil!',
+          metaSec:{
+            nome:"teste2",
+            descricao:"teste descricao2"
+          }
         },
         {
-          nome: 'Obter financiamento para a criação de um empreendimento'
+          nome: 'Obter financiamento para a criação de um empreendimento',
+          descricao: 'É muito chato!',
+          metaSec:{
+            nome:"teste3",
+            descricao:""
+          }
         },
       ];
 var itemText2 = {
