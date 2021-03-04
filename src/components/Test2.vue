@@ -6,19 +6,12 @@
       <template #modal-title>
         Adicionar nova meta
       </template>
-      <!-- <template #default="{ ok }">
-        <p class="my  -4">
-          <b-input input type="text" v-model="itemText.nome" placeholder="Adicione um meta!"></b-input>
-          <b-button v-on:click="ok()" variant="primary" class="btn btn-primary btn-sm">Adicionar</b-button>
-        </p>
-      </template> -->
       <div class="">
-        <h5>Nome da meta:</h5>
-        <b-input input type="text" v-model="itemText.nome" placeholder="Adicione um meta!"></b-input>
+        <MetaFormulario/>
+        <!-- <h5>Nome da meta:</h5>
+        <b-input input type="text" v-model="itemText.nome" placeholder="Adicione um meta!"></b-input> -->
       </div>
       <template #modal-footer="{ ok, cancel}">
-        <!-- <b>Custom Footer</b> -->
-        <!-- Emulate built in modal footer ok and cancel button actions -->
         <b-button size="sm" variant="primary" @click="ok(), addItem()">
           Adicionar
         </b-button>
@@ -67,11 +60,13 @@
 </template>
 <script>
 import Navbar from './Navbar'
+import MetaFormulario from './MetaFormulario'
 export default {
   name: 'Test2',
   components: {
     // Test,
     Navbar,
+    MetaFormulario,
   },
   data() {
     return {
@@ -95,11 +90,11 @@ export default {
       }
     },
     addItem: function(){
-      this.$emit("changeMsg3", this.itemText);
-      this.$parent.addItem()
-      this.itemText = {
-        nome: ''
-      }
+      // this.$emit("changeMsg3", this.itemText);
+      // this.$parent.addItem()
+      // this.itemText = {
+      //   nome: ''
+      // }
     },
     removeItem: function(evt) {
       this.$parent.removeItem(evt);
