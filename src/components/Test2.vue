@@ -8,7 +8,7 @@
       </template>
       <b-container>
         <div>
-          <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+          <b-form>
             <b-form-group
               id="input-group-1"
               label="Nome da meta:"
@@ -64,8 +64,8 @@
               </b-form-checkbox-group>
             </b-form-group> -->
 
-            <b-button type="submit" variant="primary">Submit</b-button>
-            <b-button type="reset" variant="danger">Reset</b-button>
+            <!-- <b-button type="submit" variant="primary">Submit</b-button>
+            <b-button type="reset" variant="danger">Reset</b-button> -->
           </b-form>
 
           <b-card class="mt-3" header="Form Data Result">
@@ -75,10 +75,10 @@
       </b-container>
 
       <template #modal-footer="{ ok, cancel}">
-        <b-button size="sm" variant="primary" @click="ok(), addItem()">
+        <b-button type="submit" size="sm" variant="primary" @click="ok(), addItem()">
           Adicionar
         </b-button>
-        <b-button size="sm" variant="secondary" @click="cancel()">
+        <b-button type="cancel" size="sm" variant="secondary" @click="cancel()">
           Cancelar
         </b-button>
       </template>
@@ -141,8 +141,6 @@ export default {
         food: null,
         checked: []
       },
-      foods: [{ text: 'Select One', value: null }, 'Carrots', 'Beans', 'Tomatoes', 'Corn'],
-      show: true
     }
   },
   props: {
@@ -161,7 +159,8 @@ export default {
       this.$emit("changeMsg3", this.meta);
       this.$parent.addItem()
       this.meta = {
-        nome: ''
+        nome: '',
+        descricao: '',
       }
     },
     removeItem: function(evt) {
@@ -179,23 +178,6 @@ export default {
       }
       console.log(evt)
     },
-    onSubmit(event) {
-      event.preventDefault()
-      alert(JSON.stringify(this.meta))
-    },
-    onReset(event) {
-      event.preventDefault()
-      // Reset our form values
-      this.meta.nome = ''
-      this.meta.descricao = ''
-      this.meta.food = null
-      this.meta.checked = []
-      // Trick to reset/clear native browser form validation state
-      this.show = false
-      this.$nextTick(() => {
-        this.show = true
-      })
-    }
   }
 }
 </script>

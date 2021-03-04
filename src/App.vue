@@ -90,7 +90,6 @@ export default {
     },
     removeItem: function(x) {
       this.metas.splice(x, 1);
-      // console.log(String(x))
     },
     changeItem: function(x) {
       var itemTextContent2
@@ -99,7 +98,6 @@ export default {
         return;
       }
       this.metas.splice(x, 1, itemTextContent2);
-      // this.itemText2 = {nome: '', country:''}
     },
     setMessage: function(msg) {
       this.itemText2 = msg;
