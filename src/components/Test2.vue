@@ -48,8 +48,9 @@
             >
               <b-form-input
                 id="input-1"
+                v-model="meta.metaSec.nome"
                 type="text"
-                placeholder="Insira sua meta!"
+                placeholder="Insira sua meta secundária!"
                 required
               ></b-form-input>
             </b-form-group>
@@ -61,6 +62,7 @@
               >
               <b-form-textarea
                 id="input-2"
+                v-model="meta.metaSec.descricao"
                 placeholder="Descrição da meta secundária..."
                 rows="3"
                 max-rows="6"
@@ -129,8 +131,8 @@
                     <h5>Descrição</h5>
                       <b-icon font-scale="1.6" icon="trash" text="dark" aria-label="Remove" v-on:click="removeItem(x), close()"></b-icon>
                   </template>
-                  <div class="" v-for="(metaSec, y) in meta" :key="y">
-                    {{metaSec.descricao}}
+                  <div class="" v-for="(metaSec, index) in meta" :key="index">
+                    {{metaSec.nome}}
                   </div>
                 </b-modal>
               </b-card-body>
@@ -160,8 +162,8 @@ export default {
         nome: '',
         descricao: '',
         metaSec:{
-          nome:'teste',
-          descricao: 'teste',
+          nome:'',
+          descricao: '',
         }
       },
     }
@@ -181,10 +183,6 @@ export default {
       console.log(this.meta.nome);
       this.$emit("changeMsg3", this.meta);
       this.$parent.addItem()
-      this.meta = {
-        nome: '',
-        descricao: '',
-      }
     },
     removeItem: function(evt) {
       this.$parent.removeItem(evt);

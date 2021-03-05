@@ -52,12 +52,8 @@ var metas = [{
           }
         },
       ];
-var itemText2 = {
-        nome: ''
-      };
-var itemText = {
-        nome: ''
-      };
+var itemText2;
+var itemText;
 var tabs = [{
     name: "Home",
     tabIcon: "house-door-fill",
