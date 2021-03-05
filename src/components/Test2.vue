@@ -37,8 +37,17 @@
                 optional
               ></b-form-textarea>
             </b-form-group>
-
             <hr>
+            <div class="" v-for="(item, x) in meta.metaSecundaria" :key="x">
+              <div class="border mb-4 p-3">
+                <h5><b>Meta secundária</b></h5>
+                <h6>{{meta.metaSecundaria[x].nome}}</h6>
+                <h5><b>Descrição</b></h5>
+                <h6>{{meta.metaSecundaria[x].descricao}}</h6>
+              </div>
+
+            </div>
+
             <b-card>
             <b-form-group
               id="input-group-1"
@@ -48,7 +57,7 @@
             >
               <b-form-input
                 id="input-1"
-                v-model="meta.metaSec.nome"
+                v-model="metaSecundariaConteudo.nome"
                 type="text"
                 placeholder="Insira sua meta secundária!"
                 required
@@ -62,37 +71,16 @@
               >
               <b-form-textarea
                 id="input-2"
-                v-model="meta.metaSec.descricao"
+                v-model="metaSecundariaConteudo.descricao"
                 placeholder="Descrição da meta secundária..."
                 rows="3"
                 max-rows="6"
                 optional
               ></b-form-textarea>
             </b-form-group>
-            <b-button class="float-right" type="submit" variant="primary">Adicionar</b-button>
+            <b-button class="float-right" @click="addMetaSecundaria" variant="primary">Adicionar</b-button>
           </b-card>
-            <!-- <b-form-group id="input-group-3" label="Food:" label-for="input-3">
-              <b-form-select
-                id="input-3"
-                v-model="form.food"
-                :options="foods"
-                required
-              ></b-form-select>
-            </b-form-group> -->
 
-            <!-- <b-form-group id="input-group-4" v-slot="{ ariaDescribedby }">
-              <b-form-checkbox-group
-                v-model="form.checked"
-                id="checkboxes-4"
-                :aria-describedby="ariaDescribedby"
-              >
-                <b-form-checkbox value="me">Check me out</b-form-checkbox>
-                <b-form-checkbox value="that">Check that out</b-form-checkbox>
-              </b-form-checkbox-group>
-            </b-form-group> -->
-
-            <!-- <b-button type="submit" variant="primary">Submit</b-button>
-            <b-button type="reset" variant="danger">Reset</b-button> -->
           </b-form>
 
           <b-card class="mt-3" header="Form Data Result">
@@ -131,14 +119,14 @@
                     <h5>Descrição</h5>
                       <b-icon font-scale="1.6" icon="trash" text="dark" aria-label="Remove" v-on:click="removeItem(x), close()"></b-icon>
                   </template>
-                    <h6><b>Meta</b></h6>
-                    {{meta.nome}}<br>
-                    <h6><b>Descrição</b></h6>
-                    {{meta.descricao}}<br>
-                    <h6><b>Submeta</b></h6>
-                    {{metaSecNome(x)}}<br>
-                    <h6><b>Descrição</b></h6>
-                    {{metaSecDescricao(x)}}
+                    <p><b>Meta</b><br>{{meta.nome}}</p>
+
+                    <p><b>Descrição</b><br>{{meta.descricao}}</p>
+
+                    <p><b>Submeta</b><br>{{metaSecNome(x)}}</p>
+
+                    <p><b>Descrição submeta</b><br>{{metaSecDescricao(x)}}</p>
+
 
                 </b-modal>
               </b-card-body>
@@ -164,13 +152,15 @@ export default {
         nome: '',
         descricao: '',
       },
+      metaSecundariaConteudo:{
+        nome:'',
+        descricao:'',
+      },
+      // adicionar metaSecundaria um Array para conter multiplos objetos de metas secundárias
       meta: {
         nome: '',
         descricao: '',
-        metaSec:{
-          nome:'',
-          descricao: '',
-        }
+        metaSecundaria:[]
       },
     }
   },
@@ -179,11 +169,23 @@ export default {
   },
   methods: {
     metaSecNome: function(x){
-      return this.metas[x].metaSec.nome
+      return x
     },
     metaSecDescricao: function(x){
-      return this.metas[x].metaSec.descricao
+      return x
     },
+
+    addMetaSecundaria: function(){
+      var itemMetaSecundaria
+      itemMetaSecundaria = this.metaSecundariaConteudo
+      this.meta.metaSecundaria.push(itemMetaSecundaria)
+      this.metaSecundariaConteudo = {
+        nome:'',
+        descricao:''
+      }
+      console.log(itemMetaSecundaria)
+    },
+
     changeMsg2() {
       this.$emit("changeMsg3", this.itemText2);
       console.log('message emit from child component');

@@ -30,26 +30,62 @@ import HelloWorld from './components/HelloWorld'
 var metas = [{
           nome: 'Fazer um bolo de chocolate',
           descricao: 'É muito gostoso!',
-          metaSec:{
-            nome:"teste",
-            descricao:"teste descricao"
-          }
+          metaSecundaria:[{
+            nome:'teste1',
+            descricao: 'teste1',
+          },
+          {
+            nome:'teste2',
+            descricao: 'teste2',
+          },
+          {
+            nome:'teste3',
+            descricao: 'teste3',
+          },
+          {
+            nome:'teste4',
+            descricao: 'teste4',
+          }]
         },
         {
           nome: 'Aprender como gerir uma confeitaria',
           descricao: 'É muito dificil!',
-          metaSec:{
-            nome:"teste2",
-            descricao:"teste descricao2"
-          }
+          metaSecundaria:[{
+            nome:'teste5',
+            descricao: 'teste5',
+          },
+          {
+            nome:'teste6',
+            descricao: 'teste6',
+          },
+          {
+            nome:'teste7',
+            descricao: 'teste7',
+          },
+          {
+            nome:'teste8',
+            descricao: 'teste8',
+          }]
         },
         {
           nome: 'Obter financiamento para a criação de um empreendimento',
           descricao: 'É muito chato!',
-          metaSec:{
-            nome:"teste3",
-            descricao:""
-          }
+          metaSecundaria:[{
+            nome:'teste9',
+            descricao: 'teste9',
+          },
+          {
+            nome:'teste10',
+            descricao: 'teste10',
+          },
+          {
+            nome:'teste11',
+            descricao: 'teste11',
+          },
+          {
+            nome:'teste12',
+            descricao: 'teste12',
+          }]
         },
       ];
 var itemText2;
