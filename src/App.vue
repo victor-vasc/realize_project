@@ -62,12 +62,12 @@ var tabs = [{
   {
     name: "Metas",
     tabIcon: "list-ul",
-    component:  { principal: HelloWorld2, props: {msg: "TESTE"}},
+    component:  { principal: HelloWorld2, props: {msg: "Meta Resumina Página"}},
   },
   {
     name: "Contato",
     tabIcon: "chat-left-text-fill",
-    component:  { principal: HelloWorld, props: {msg: "TESTE"}},
+    component:  { principal: HelloWorld, props: {msg: "Contato Página"}},
   }
 ];
 export default {

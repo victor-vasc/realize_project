@@ -101,7 +101,7 @@
         </div>
 
       <template #modal-footer="{ ok, cancel}">
-        <b-button type="submit" size="sm" variant="primary" @click="ok(), addItem()">
+        <b-button type="submit" size="sm" variant="info" @click="ok(), addItem()">
           Adicionar
         </b-button>
         <b-button type="cancel" size="sm" variant="secondary" @click="cancel()">
@@ -131,9 +131,15 @@
                     <h5>Descrição</h5>
                       <b-icon font-scale="1.6" icon="trash" text="dark" aria-label="Remove" v-on:click="removeItem(x), close()"></b-icon>
                   </template>
-                  <div class="" v-for="(metaSec, index) in meta" :key="index">
-                    {{metaSec.nome}}
-                  </div>
+                    <h6><b>Meta</b></h6>
+                    {{meta.nome}}<br>
+                    <h6><b>Descrição</b></h6>
+                    {{meta.descricao}}<br>
+                    <h6><b>Submeta</b></h6>
+                    {{metaSecNome(x)}}<br>
+                    <h6><b>Descrição</b></h6>
+                    {{metaSecDescricao(x)}}
+
                 </b-modal>
               </b-card-body>
             </b-col>
@@ -172,6 +178,12 @@ export default {
     metas: Array,
   },
   methods: {
+    metaSecNome: function(x){
+      return this.metas[x].metaSec.nome
+    },
+    metaSecDescricao: function(x){
+      return this.metas[x].metaSec.descricao
+    },
     changeMsg2() {
       this.$emit("changeMsg3", this.itemText2);
       console.log('message emit from child component');
