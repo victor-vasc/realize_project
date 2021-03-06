@@ -57,15 +57,7 @@ var metas = [{
           {
             nome:'teste6',
             descricao: 'teste6',
-          },
-          {
-            nome:'teste7',
-            descricao: 'teste7',
-          },
-          {
-            nome:'teste8',
-            descricao: 'teste8',
-          }]
+          },]
         },
         {
           nome: 'Obter financiamento para a criação de um empreendimento',
@@ -81,11 +73,7 @@ var metas = [{
           {
             nome:'teste11',
             descricao: 'teste11',
-          },
-          {
-            nome:'teste12',
-            descricao: 'teste12',
-          }]
+          },]
         },
       ];
 var itemText2;
@@ -148,7 +136,6 @@ export default {
     setMessage: function(msg) {
       this.itemText2 = msg;
       this.itemText = msg;
-      console.log("valor presente na propriedade", msg)
     },
   }
 }
@@ -169,5 +156,11 @@ export default {
 }
 .active > a{
   color:white;
+}
+.metaSecCard > .card-body{
+  padding:1em 0 0 0;
+}
+.modal-dialog-centered .modal-content  {
+    margin: 60px 0;
 }
 </style>

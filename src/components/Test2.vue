@@ -1,18 +1,20 @@
 <template>
 <div>
-  <!-- <h1>Metas</h1> -->
+
   <Navbar />
-    <b-modal centered id="modal-1">
+    <b-modal class="novaMetaModal" centered id="modal-1">
       <template #modal-title>
         Adicionar nova meta
       </template>
-        <div>
+        <div class="text-start">
+          <h3 class="mb-3">Metas:</h3>
           <b-form>
             <b-form-group
               id="input-group-1"
               label="Definição da meta:"
               label-for="input-1"
               description="Insira o nome da meta desejada nesse campo."
+              class="mx-0"
             >
               <b-form-input
                 id="input-1"
@@ -27,33 +29,36 @@
               id="input-group-2"
               label="Descrição da meta:"
               label-for="input-2"
+              class="mx-0"
               >
               <b-form-textarea
                 id="input-2"
                 v-model="meta.descricao"
+                type="text"
                 placeholder="Descrição de sua meta..."
                 rows="3"
                 max-rows="6"
                 optional
               ></b-form-textarea>
             </b-form-group>
-            <hr>
-            <div class="" v-for="(item, x) in meta.metaSecundaria" :key="x">
-              <div class="border mb-4 p-3">
-                <h5><b>Meta secundária</b></h5>
-                <h6>{{meta.metaSecundaria[x].nome}}</h6>
-                <h5><b>Descrição</b></h5>
+
+            <b-card class="metaSecCard border-left-0 border-right-0 border-bottom-0 rounded-0">
+            <h3 class="mb-3">Metas secundárias:</h3>
+            <b-card class="mb-2" v-for="(item, x) in meta.metaSecundaria" :key="x" header-tag="header">
+              <template #header>
+                <div class="d-flex align-items-center justify-content-between">
+                  <h6 class="mb-0 d-inline-block">{{meta.metaSecundaria[x].nome}}</h6>
+                  <h6 class="mb-0 d-inline-block text-right" @click="deleteMetaSecundaria(x)" ><b-icon font-scale="1.6" icon="x" text="dark" aria-label="Remove"></b-icon></h6>
+                </div>
+              </template>
                 <h6>{{meta.metaSecundaria[x].descricao}}</h6>
-              </div>
-
-            </div>
-
-            <b-card>
+              </b-card>
             <b-form-group
               id="input-group-1"
               label="Definição das metas secundários"
               label-for="input-1"
               description="Insira a definição de suas metas secundárias!"
+              class="mx-0"
             >
               <b-form-input
                 id="input-1"
@@ -68,10 +73,12 @@
               id="input-group-2"
               label="Descrição da meta secundária:"
               label-for="input-2"
+              class="mx-0"
               >
               <b-form-textarea
                 id="input-2"
                 v-model="metaSecundariaConteudo.descricao"
+                type="text"
                 placeholder="Descrição da meta secundária..."
                 rows="3"
                 max-rows="6"
@@ -80,12 +87,11 @@
             </b-form-group>
             <b-button class="float-right" @click="addMetaSecundaria" variant="primary">Adicionar</b-button>
           </b-card>
-
           </b-form>
 
-          <b-card class="mt-3" header="Form Data Result">
+          <!-- <b-card class="mt-3" header="Form Data Result">
             <pre class="m-0">{{ meta }}</pre>
-          </b-card>
+          </b-card> -->
         </div>
 
       <template #modal-footer="{ ok, cancel}">
@@ -101,7 +107,7 @@
   <b-list-group>
     <b-list-group-item v-for="(meta, x) in metas" :key="x" class="justify-content-between">
       <div>
-        <b-card no-body class="overflow-hidden" v-b-modal="String(x)"  style="max-width: 540px;">
+        <b-card no-body class="overflow-hidden" v-b-modal="String(x)" style="max-width: 540px;">
           <b-row no-gutters>
             <b-col md="6">
               <!-- <b-card-img src="https://picsum.photos/400/400/?image=20" alt="Image" class="rounded-0"></b-card-img> -->
@@ -119,14 +125,17 @@
                     <h5>Descrição</h5>
                       <b-icon font-scale="1.6" icon="trash" text="dark" aria-label="Remove" v-on:click="removeItem(x), close()"></b-icon>
                   </template>
+
                     <p><b>Meta</b><br>{{meta.nome}}</p>
-
                     <p><b>Descrição</b><br>{{meta.descricao}}</p>
-
-                    <p><b>Submeta</b><br>{{metaSecNome(x)}}</p>
-
-                    <p><b>Descrição submeta</b><br>{{metaSecDescricao(x)}}</p>
-
+                  <hr>
+                    <div class="" v-for="item, x in meta.metaSecundaria" :key="x">
+                      <p><b>Meta secundária</b></p>
+                      <p>{{meta.metaSecundaria[x].nome}}</p>
+                      <p><b>Descrição</b></p>
+                    <p>{{meta.metaSecundaria[x].descricao}}</p>
+                    <hr>
+                    </div>
 
                 </b-modal>
               </b-card-body>
@@ -168,20 +177,24 @@ export default {
     metas: Array,
   },
   methods: {
-    metaSecNome: function(x){
-      return x
+    metaSecNome: function(){
     },
-    metaSecDescricao: function(x){
-      return x
+    metaSecDescricao: function(){
     },
 
     addMetaSecundaria: function(){
       var itemMetaSecundaria
       itemMetaSecundaria = this.metaSecundariaConteudo
+      if (itemMetaSecundaria.nome == '') {
+        return
+      }
+      if(itemMetaSecundaria.descricao == ''){
+        this.metaSecundariaConteudo.descricao = "nenhum conteúdo foi adicionado..."
+      }
       this.meta.metaSecundaria.push(itemMetaSecundaria)
       this.metaSecundariaConteudo = {
         nome:'',
-        descricao:''
+        descricao:'',
       }
       console.log(itemMetaSecundaria)
     },
@@ -197,9 +210,17 @@ export default {
       console.log(this.meta.nome);
       this.$emit("changeMsg3", this.meta);
       this.$parent.addItem()
+      this.meta = {
+        nome: '',
+        descricao: '',
+        metaSecundaria:[]
+      }
     },
     removeItem: function(evt) {
       this.$parent.removeItem(evt);
+    },
+    deleteMetaSecundaria: function(x){
+      this.meta.metaSecundaria.splice(x, 1);
     },
     changeItem: function(evt) {
       this.$parent.changeItem(evt);
@@ -217,17 +238,4 @@ export default {
 }
 </script>
 <style scoped>
-/* li {
-  height: 40px;
-  width: 100%;
-  padding: 15px;
-  border: 1px solid saddlebrown;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-a {
-  color: #42b983;
-} */
 </style>
