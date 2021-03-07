@@ -31,6 +31,22 @@
             <b-collapse :id="'accordion-' + x" visible accordion="my-accordion" role="tabpanel">
               <b-card-body>
                 <h6>{{meta.metaSecundaria[x].descricao}}</h6>
+                <!-- <h6>{{meta.metaSecundaria[x].options}}</h6> -->
+                <b-form-group
+                  label="Individual stacked checkboxes2 (default)"
+                  v-slot="{ ariaDescribedby2 }"
+                >
+                  <b-form-checkbox
+                    v-for="item in meta.metaSecundaria[x].options"
+                    v-model="meta.metaSecundaria[x].selected"
+                    :key="meta.metaSecundaria[x].nome + item.value"
+                    :value="meta.metaSecundaria[x].nome + item.value"
+                    :aria-describedby="ariaDescribedby2"
+                    name="flavour-4a"
+                  >
+                    {{item.text}}
+                  </b-form-checkbox>
+                </b-form-group>
               </b-card-body>
             </b-collapse>
           </b-card>
@@ -40,6 +56,22 @@
 
           <b-form-group id="input-group-2" label="Descrição da meta secundária:" label-for="input-2" class="mx-0">
             <b-form-textarea id="input-2" v-model="metaSecundariaConteudo.descricao" type="text" placeholder="Descrição da meta secundária..." rows="3" max-rows="6" optional></b-form-textarea>
+          </b-form-group>
+
+          <b-form-group
+            label="Individual stacked checkboxes (default)"
+            v-slot="{ ariaDescribedby }"
+          >
+            <b-form-checkbox
+              v-for="option in metaSecundariaConteudo.options"
+              v-model="metaSecundariaConteudo.selected"
+              :key="option.value"
+              :value="option.value"
+              :aria-describedby="ariaDescribedby"
+              name="flavour-3a"
+            >
+              {{ option.text }}
+            </b-form-checkbox>
           </b-form-group>
           <b-button class="float-right" @click="addMetaSecundaria" variant="primary">Adicionar</b-button>
         </b-card>
@@ -85,6 +117,21 @@
                     <p><b>Descrição</b></p>
                     <p>{{meta.metaSecundaria[x].descricao}}</p>
                     <hr>
+                    <b-form-group
+                      label="Individual stacked checkboxes2 (default)"
+                      v-slot="{ ariaDescribedby2 }"
+                    >
+                      <b-form-checkbox
+                        v-for="item in meta.metaSecundaria[x].options"
+                        v-model="meta.metaSecundaria[x].selected"
+                        :key="meta.metaSecundaria[x].nome + item.value"
+                        :value="meta.metaSecundaria[x].nome + item.value"
+                        :aria-describedby="ariaDescribedby2"
+                        name="flavour-4a"
+                      >
+                        {{item.text}}
+                      </b-form-checkbox>
+                    </b-form-group>
                   </div>
                   <template #modal-footer="{cancel}">
                     <b-button type="cancel" size="mg" variant="danger" @click="removeItem(x), cancel()">
@@ -118,8 +165,14 @@ export default {
       metaSecundariaConteudo: {
         nome: '',
         descricao: '',
+        selected: [], // Must be an array reference!
+        options: [
+           { text: 'Orange', value: 'orange' },
+           { text: 'Apple', value: 'apple' },
+           { text: 'Pineapple', value: 'pineapple' },
+           { text: 'Grape', value: 'grape' },
+         ],
       },
-      // adicionar metaSecundaria um Array para conter multiplos objetos de metas secundárias
       meta: {
         nome: '',
         descricao: '',
@@ -147,26 +200,30 @@ export default {
       this.metaSecundariaConteudo = {
         nome: '',
         descricao: '',
+        selected: [], // Must be an array reference!
+        options: [
+           { text: 'Orange', value: 'orange' },
+           { text: 'Apple', value: 'apple' },
+           { text: 'Pineapple', value: 'pineapple' },
+           { text: 'Grape', value: 'grape' },
+         ],
       }
-      console.log(itemMetaSecundaria)
     },
 
     changeMsg2() {
       this.$emit("changeMsg3", this.itemText2);
-      console.log('message emit from child component');
       this.itemText2 = {
         nome: ''
       }
     },
     addItem: function() {
-      console.log(this.meta.nome);
       this.$emit("changeMsg3", this.meta);
       this.$parent.addItem()
-      this.meta = {
-        nome: '',
-        descricao: '',
-        metaSecundaria: []
-      }
+      // this.meta = {
+      //   nome: '',
+      //   descricao: '',
+      //   metaSecundaria: []
+      // }
     },
     removeItem: function(evt) {
       this.$parent.removeItem(evt);
@@ -184,7 +241,6 @@ export default {
       this.itemText2 = {
         nome: ''
       }
-      console.log(evt)
     },
   }
 }

@@ -33,48 +33,76 @@ var metas = [{
           metaSecundaria:[{
             nome:'teste1',
             descricao: 'teste1',
+            selected: [], // Must be an array reference!
+            options: [
+               { text: 'Orange', value: 'orange' },
+               { text: 'Apple', value: 'apple' },
+               { text: 'Pineapple', value: 'pineapple' },
+               { text: 'Grape', value: 'grape' },
+             ],
           },
           {
             nome:'teste2',
             descricao: 'teste2',
+            selected: [], // Must be an array reference!
+            options: [
+               { text: 'Orange', value: 'orange' },
+               { text: 'Apple', value: 'apple' },
+               { text: 'Pineapple', value: 'pineapple' },
+               { text: 'Grape', value: 'grape' },
+             ],
           },
           {
             nome:'teste3',
             descricao: 'teste3',
+            selected: [], // Must be an array reference!
+            options: [
+               { text: 'Orange', value: 'orange' },
+               { text: 'Apple', value: 'apple' },
+               { text: 'Pineapple', value: 'pineapple' },
+               { text: 'Grape', value: 'grape' },
+             ],
           },
           {
             nome:'teste4',
             descricao: 'teste4',
+            selected: [], // Must be an array reference!
+            options: [
+               { text: 'Orange', value: 'orange' },
+               { text: 'Apple', value: 'apple' },
+               { text: 'Pineapple', value: 'pineapple' },
+               { text: 'Grape', value: 'grape' },
+             ],
           }]
         },
-        {
-          nome: 'Aprender como gerir uma confeitaria',
-          descricao: 'É muito dificil!',
-          metaSecundaria:[{
-            nome:'teste5',
-            descricao: 'teste5',
-          },
-          {
-            nome:'teste6',
-            descricao: 'teste6',
-          },]
-        },
-        {
-          nome: 'Obter financiamento para a criação de um empreendimento',
-          descricao: 'É muito chato!',
-          metaSecundaria:[{
-            nome:'teste9',
-            descricao: 'teste9',
-          },
-          {
-            nome:'teste10',
-            descricao: 'teste10',
-          },
-          {
-            nome:'teste11',
-            descricao: 'teste11',
-          },]
-        },
+        // {
+        //   nome: 'Aprender como gerir uma confeitaria',
+        //   descricao: 'É muito dificil!',
+        //   metaSecundaria:[{
+        //     nome:'teste5',
+        //     descricao: 'teste5',
+        //   },
+        //   {
+        //     nome:'teste6',
+        //     descricao: 'teste6',
+        //   },]
+        // },
+        // {
+        //   nome: 'Obter financiamento para a criação de um empreendimento',
+        //   descricao: 'É muito chato!',
+        //   metaSecundaria:[{
+        //     nome:'teste9',
+        //     descricao: 'teste9',
+        //   },
+        //   {
+        //     nome:'teste10',
+        //     descricao: 'teste10',
+        //   },
+        //   {
+        //     nome:'teste11',
+        //     descricao: 'teste11',
+        //   },]
+        // },
       ];
 var itemText2;
 var itemText;
