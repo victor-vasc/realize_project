@@ -105,8 +105,14 @@
   <b-list-group>
     <b-list-group-item v-for="(meta, x) in metas" :key="x" class="justify-content-between p-0 border-0">
       <div>
-        <b-card text-variant="dark" no-body class="overflow-hidden mb-3" v-b-modal="String(x)" style="max-width: 540px;">
-              <b-card-body v-bind:title="meta.nome" class="">
+        <b-card
+          no-body
+          class="overflow-hidden mb-3"
+          v-on:click="changeTab"
+          style="max-width: 540px;"
+         >
+         <!-- v-b-modal="String(x)" -->
+              <b-card-body v-bind:title="meta.nome" class="bg-info text-light">
                 <b-modal centered v-bind:id="String(x)" title="Descrição" body-class="cardMetaBody" footer-class="justify-content-start" >
                   <p><b>Meta</b><br>{{meta.nome}}</p>
                   <p><b>Descrição</b><br>{{meta.descricao}}</p>
@@ -182,6 +188,11 @@ export default {
   methods: {
     metaSecNome: function() {},
     metaSecDescricao: function() {},
+
+    changeTab: function(){
+      this.$parent.$data.currentTab = this.$parent.$data.tabs[1]
+      console.log("changeTab function")
+    },
 
     addMetaSecundaria: function() {
       var itemMetaSecundaria
