@@ -108,7 +108,7 @@
         <b-card
           no-body
           class="overflow-hidden mb-3"
-          v-on:click="changeTab"
+          v-on:click="changeTab(x)"
           style="max-width: 540px;"
          >
          <!-- v-b-modal="String(x)" -->
@@ -163,10 +163,11 @@ export default {
   },
   data() {
     return {
-      itemText2: {
-        nome: '',
-        descricao: '',
-      },
+      // itemText2: {
+      //   nome: '',
+      //   descricao: '',
+      // },
+      metaSelecionada:'',
       novaTarefa: [{tarefa:''}],
       metaSecundariaConteudo: {
         nome: '',
@@ -185,13 +186,19 @@ export default {
   props: {
     metas: Array,
   },
+  watch: {
+    // metaSelecionada: function(){
+    //
+    // }
+  },
   methods: {
     metaSecNome: function() {},
     metaSecDescricao: function() {},
 
-    changeTab: function(){
-      this.$parent.$data.currentTab = this.$parent.$data.tabs[1]
-      console.log("changeTab function")
+    changeTab: function(x){
+      // this.$parent.$data.currentTab = this.$parent.$data.tabs[1]
+      this.metaSelecionada = x;
+      console.log("changeTab function", this.metaSelecionada)
     },
 
     addMetaSecundaria: function() {
