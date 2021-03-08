@@ -35,10 +35,10 @@ var metas = [{
             descricao: 'teste1',
             selected: [], // Must be an array reference!
             options: [
-               { text: 'Orange', value: 'orange' },
-               { text: 'Apple', value: 'apple' },
-               { text: 'Pineapple', value: 'pineapple' },
-               { text: 'Grape', value: 'grape' },
+               { tarefa: 'Orange'},
+               { tarefa: 'Apple'},
+               { tarefa: 'Pineapple' },
+               { tarefa: 'Grape' },
              ],
           },
           {
@@ -46,10 +46,10 @@ var metas = [{
             descricao: 'teste2',
             selected: [], // Must be an array reference!
             options: [
-               { text: 'Orange', value: 'orange' },
-               { text: 'Apple', value: 'apple' },
-               { text: 'Pineapple', value: 'pineapple' },
-               { text: 'Grape', value: 'grape' },
+               { tarefa: 'Orange' },
+               { tarefa: 'Apple' },
+               { tarefa: 'Pineapple' },
+               { tarefa: 'Grape' },
              ],
           },
           {
@@ -57,10 +57,10 @@ var metas = [{
             descricao: 'teste3',
             selected: [], // Must be an array reference!
             options: [
-               { text: 'Orange', value: 'orange' },
-               { text: 'Apple', value: 'apple' },
-               { text: 'Pineapple', value: 'pineapple' },
-               { text: 'Grape', value: 'grape' },
+               { tarefa: 'Orange' },
+               { tarefa: 'Apple' },
+               { tarefa: 'Pineapple' },
+               { tarefa: 'Grape' },
              ],
           },
           {
@@ -68,10 +68,10 @@ var metas = [{
             descricao: 'teste4',
             selected: [], // Must be an array reference!
             options: [
-               { text: 'Orange', value: 'orange' },
-               { text: 'Apple', value: 'apple' },
-               { text: 'Pineapple', value: 'pineapple' },
-               { text: 'Grape', value: 'grape' },
+               { tarefa: 'Orange' },
+               { tarefa: 'Apple' },
+               { tarefa: 'Pineapple' },
+               { tarefa: 'Grape' },
              ],
           }]
         },

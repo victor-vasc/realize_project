@@ -2,6 +2,7 @@
 <div>
 
   <Navbar />
+  <!-- inicio modal de nova meta -->
   <b-modal class="novaMetaModal" centered id="modal-1">
     <template #modal-title>
       Adicionar nova meta
@@ -33,18 +34,19 @@
                 <h6>{{meta.metaSecundaria[x].descricao}}</h6>
                 <!-- <h6>{{meta.metaSecundaria[x].options}}</h6> -->
                 <b-form-group
-                  label="Individual stacked checkboxes2 (default)"
+                  label="Tarefas:"
+                  label-size="lg"
                   v-slot="{ ariaDescribedby2 }"
                 >
                   <b-form-checkbox
                     v-for="item in meta.metaSecundaria[x].options"
                     v-model="meta.metaSecundaria[x].selected"
-                    :key="meta.metaSecundaria[x].nome + item.value"
-                    :value="meta.metaSecundaria[x].nome + item.value"
+                    :key="meta.metaSecundaria[x].nome + item.tarefa"
+                    :value="meta.metaSecundaria[x].nome + item.tarefa"
                     :aria-describedby="ariaDescribedby2"
                     name="flavour-4a"
                   >
-                    {{item.text}}
+                    {{item.tarefa}}
                   </b-form-checkbox>
                 </b-form-group>
               </b-card-body>
@@ -59,20 +61,26 @@
           </b-form-group>
 
           <b-form-group
-            label="Individual stacked checkboxes (default)"
-            v-slot="{ ariaDescribedby }"
+            label="Tarefas:"
+            label-size="lg"
+            v-slot="{ TarefasCheck }"
+            class="text-break"
           >
             <b-form-checkbox
               v-for="option in metaSecundariaConteudo.options"
               v-model="metaSecundariaConteudo.selected"
-              :key="option.value"
-              :value="option.value"
-              :aria-describedby="ariaDescribedby"
-              name="flavour-3a"
+              :key="option.tarefa"
+              :value="option.tarefa"
+              :aria-describedby="TarefasCheck"
+              name="TarefasCheck"
             >
-              {{ option.text }}
+              {{ option.tarefa }}
             </b-form-checkbox>
           </b-form-group>
+          <div class="mb-3">
+            <b-button class="d-inline" @click="addTarefa" size="sm" variant="link"><b-icon font-scale="1.6" icon="plus" text="dark" aria-label="Remove"></b-icon></b-button>
+            <b-form-input class="d-inline w-75 align-middle border-top-0 border-left-0 border-right-0" v-model="novaTarefa.tarefa" placeholder="Adicionar nova meta..."></b-form-input>
+          </div>
           <b-button class="float-right" @click="addMetaSecundaria" variant="primary">Adicionar</b-button>
         </b-card>
       </b-form>
@@ -92,21 +100,13 @@
     </template>
   </b-modal>
 
-  <b-list-group>
-    <b-list-group-item v-for="(meta, x) in metas" :key="x" class="justify-content-between">
-      <div>
-        <b-card no-body class="overflow-hidden" v-b-modal="String(x)" style="max-width: 540px;">
-          <b-row no-gutters>
-            <b-col md="6">
-              <!-- <b-card-img src="https://picsum.photos/400/400/?image=20" alt="Image" class="rounded-0"></b-card-img> -->
-            </b-col>
-            <b-col md="6">
-              <b-card-body v-bind:title="meta.nome">
-                <!-- <b-card-text>
-                  This is a wider card with supporting text as a natural lead-in to additional content.
-                  This content is a little bit longer.
-                </b-card-text> -->
+  <!-- final modal de nova meta -->
 
+  <b-list-group>
+    <b-list-group-item v-for="(meta, x) in metas" :key="x" class="justify-content-between p-0 border-0">
+      <div>
+        <b-card text-variant="dark" no-body class="overflow-hidden mb-3" v-b-modal="String(x)" style="max-width: 540px;">
+              <b-card-body v-bind:title="meta.nome" class="">
                 <b-modal centered v-bind:id="String(x)" title="Descrição" body-class="cardMetaBody" footer-class="justify-content-start" >
                   <p><b>Meta</b><br>{{meta.nome}}</p>
                   <p><b>Descrição</b><br>{{meta.descricao}}</p>
@@ -118,18 +118,19 @@
                     <p>{{meta.metaSecundaria[x].descricao}}</p>
                     <hr>
                     <b-form-group
-                      label="Individual stacked checkboxes2 (default)"
+                      label="Tarefas:"
+                      label-size="lg"
                       v-slot="{ ariaDescribedby2 }"
                     >
                       <b-form-checkbox
                         v-for="item in meta.metaSecundaria[x].options"
                         v-model="meta.metaSecundaria[x].selected"
-                        :key="meta.metaSecundaria[x].nome + item.value"
-                        :value="meta.metaSecundaria[x].nome + item.value"
+                        :key="meta.metaSecundaria[x].nome + item.tarefa"
+                        :value="meta.metaSecundaria[x].nome + item.tarefa"
                         :aria-describedby="ariaDescribedby2"
                         name="flavour-4a"
                       >
-                        {{item.text}}
+                        {{item.tarefa}}
                       </b-form-checkbox>
                     </b-form-group>
                   </div>
@@ -140,8 +141,6 @@
                   </template>
                 </b-modal>
               </b-card-body>
-            </b-col>
-          </b-row>
         </b-card>
       </div>
     </b-list-group-item>
@@ -162,15 +161,12 @@ export default {
         nome: '',
         descricao: '',
       },
+      novaTarefa: [{tarefa:''}],
       metaSecundariaConteudo: {
         nome: '',
         descricao: '',
         selected: [], // Must be an array reference!
         options: [
-           { text: 'Orange', value: 'orange' },
-           { text: 'Apple', value: 'apple' },
-           { text: 'Pineapple', value: 'pineapple' },
-           { text: 'Grape', value: 'grape' },
          ],
       },
       meta: {
@@ -201,13 +197,16 @@ export default {
         nome: '',
         descricao: '',
         selected: [], // Must be an array reference!
-        options: [
-           { text: 'Orange', value: 'orange' },
-           { text: 'Apple', value: 'apple' },
-           { text: 'Pineapple', value: 'pineapple' },
-           { text: 'Grape', value: 'grape' },
-         ],
+        options: [],
       }
+    },
+    addTarefa: function(){
+      var metaTarefa
+      metaTarefa = this.novaTarefa
+      if (metaTarefa.tarefa == undefined){return}
+      this.metaSecundariaConteudo.options.push(metaTarefa)
+      this.novaTarefa = [{tarefa:''}]
+      console.log(metaTarefa.tarefa)
     },
 
     changeMsg2() {
