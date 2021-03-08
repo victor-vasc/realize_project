@@ -114,7 +114,7 @@ var tabs = [{
   {
     name: "Metas",
     tabIcon: "list-ul",
-    component:  { principal: HelloWorld2, props: {msg: "Meta Resumina Página"}},
+    component:  { principal: HelloWorld2, props: {msg: metas}},
   },
   {
     name: "Contato",

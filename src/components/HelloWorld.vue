@@ -1,6 +1,6 @@
 <template>
      <div class="hello">
-       <h1 class="is-size-3">{{msg}}</h1>
+       <h1 class="is-size-3">{{metas[1].nome}}</h1>
      </div>
    </template>
 
