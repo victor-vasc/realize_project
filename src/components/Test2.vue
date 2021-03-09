@@ -196,9 +196,8 @@ export default {
     metaSecDescricao: function() {},
 
     changeTab: function(x){
-      // this.$parent.$data.currentTab = this.$parent.$data.tabs[1]
-      this.metaSelecionada = x;
-      console.log("changeTab function", this.metaSelecionada)
+      this.$parent.$data.currentTab = this.$parent.$data.tabs[1]
+      this.$emit("changeTab", x);
     },
 
     addMetaSecundaria: function() {

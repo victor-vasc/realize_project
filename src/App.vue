@@ -2,7 +2,7 @@
 <div id="app">
   <b-container style="margin: 86px 0">
     <keep-alive>
-      <component :is="currentTab.component.principal" v-bind="{...currentTab.component.props}" v-on:changeMsg3="setMessage" class="tab"></component>
+      <component :is="currentTab.component.principal" v-bind="{...currentTab.component.props}" v-on:changeMsg3="setMessage" v-on:changeTab="changeTab" :x="tabSelecionada" class="tab"></component>
     </keep-alive>
     <b-navbar fixed="bottom" toggleable="lg" variant="info">
       <b-nav class="border-0 w-100 justify-content-between">
@@ -27,8 +27,8 @@ import Test2 from './components/Test2'
 import HelloWorld2 from './components/HelloWorld2'
 import HelloWorld from './components/HelloWorld'
 
-var metas = [{
-          nome: 'Fazer um bolo de chocolate',
+var metas = [
+         {nome: 'Fazer um bolo de chocolate',
           descricao: 'É muito gostoso!',
           metaSecundaria:[{
             nome:'teste1',
@@ -41,7 +41,33 @@ var metas = [{
                { tarefa: 'Grape' },
              ],
           }]
-        },
+        },{nome: 'Fazer um bolo de c2222222222hocolate',
+         descricao: 'É muito gostoso!',
+         metaSecundaria:[{
+           nome:'teste1',
+           descricao: 'teste1',
+           selected: [], // Must be an array reference!
+           options: [
+              { tarefa: 'Orange'},
+              { tarefa: 'Apple'},
+              { tarefa: 'Pineapple' },
+              { tarefa: 'Grape' },
+            ],
+         }]
+       },{nome: 'Fazer um bolo de c333333333333hocolate',
+        descricao: 'É muito gostoso!',
+        metaSecundaria:[{
+          nome:'teste1',
+          descricao: 'teste1',
+          selected: [], // Must be an array reference!
+          options: [
+             { tarefa: 'Orange'},
+             { tarefa: 'Apple'},
+             { tarefa: 'Pineapple' },
+             { tarefa: 'Grape' },
+           ],
+        }]
+      },
       ];
 var itemText2;
 var itemText;
@@ -75,6 +101,7 @@ export default {
       currentTab: tabs[0],
       itemText2: itemText2,
       itemText: itemText,
+      tabSelecionada: '',
     }
   },
   methods: {
@@ -104,6 +131,10 @@ export default {
       this.itemText2 = msg;
       this.itemText = msg;
     },
+    changeTab: function(evt){
+      this.tabSelecionada = evt;
+      console.log("teste", evt, this.tabSelecionada)
+    }
   }
 }
 </script>
