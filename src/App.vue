@@ -1,6 +1,6 @@
 <template>
 <div id="app">
-  <b-container style="margin: 86px 0">
+  <b-container style="margin: 86px auto">
     <keep-alive>
       <component :is="currentTab.component.principal" v-bind="{...currentTab.component.props}" v-on:changeMsg3="setMessage" v-on:changeTab="changeTab" :x="tabSelecionada" class="tab"></component>
     </keep-alive>
@@ -31,8 +31,52 @@ var metas = [
          {nome: 'Fazer um bolo de chocolate',
           descricao: 'É muito gostoso!',
           metaSecundaria:[{
-            nome:'teste1',
-            descricao: 'teste1',
+            nome:'test222222111111e1',
+            descricao: 'test111111111111111111111e1',
+            selected: [], // Must be an array reference!
+            options: [
+               { tarefa: 'Oran1ge'},
+               { tarefa: 'App2le'},
+               { tarefa: 'Pi3neapple' },
+               { tarefa: 'Gr4ape' },
+             ],
+          },
+          {
+            nome:'test22222222222222e2',
+            descricao: 'teste2',
+            selected: [], // Must be an array reference!
+            options: [
+               { tarefa: 'Ora5nge'},
+               { tarefa: 'Ap6ple'},
+               { tarefa: 'Pi7eapple' },
+               { tarefa: 'Gra8pe' },
+             ],
+          },
+          {
+            nome:'test33333333333333e3',
+            descricao: 'teste3',
+            selected: [], // Must be an array reference!
+            options: [
+               { tarefa: 'O9range'},
+               { tarefa: 'A12pple'},
+               { tarefa: 'Pin10eapple' },
+               { tarefa: 'Grap11e' },
+             ],
+          },
+          {
+            nome:'teste4',
+            descricao: 'teste4',
+            selected: [], // Must be an array reference!
+            options: [
+               { tarefa: 'Or12ange'},
+               { tarefa: 'App13le'},
+               { tarefa: 'Pin14eapple' },
+               { tarefa: 'Gra15pe' },
+             ],
+          },
+          {
+            nome:'teste5',
+            descricao: 'teste5',
             selected: [], // Must be an array reference!
             options: [
                { tarefa: 'Orange'},
@@ -101,7 +145,7 @@ export default {
       currentTab: tabs[0],
       itemText2: itemText2,
       itemText: itemText,
-      tabSelecionada: '',
+      tabSelecionada: 0,
     }
   },
   methods: {
