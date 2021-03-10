@@ -31,7 +31,7 @@ var metas = [
          {nome: 'Fazer um bolo de chocolate',
           descricao: 'É muito gostoso!',
           metaSecundaria:[{
-            nome:'test222222111111e1',
+            nome:'test22222211111111111111111111e1',
             descricao: 'test111111111111111111111e1',
             selected: [], // Must be an array reference!
             options: [

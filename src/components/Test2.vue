@@ -103,12 +103,13 @@
   <!-- final modal de nova meta -->
 
   <b-list-group>
-    <b-list-group-item v-for="(meta, x) in metas" :key="x" class="justify-content-between p-0 border-0">
+    <b-list-group-item v-for="(meta, x) in metas" :key="x" class="justify-content-between border-0">
       <div>
         <b-card
           no-body
           class="overflow-hidden mb-3"
           v-on:click="changeTab(x)"
+          v-b-modal="String(x)"
           style="max-width: 540px;"
          >
          <!-- v-b-modal="String(x)" -->
@@ -196,7 +197,7 @@ export default {
     metaSecDescricao: function() {},
 
     changeTab: function(x){
-      this.$parent.$data.currentTab = this.$parent.$data.tabs[1]
+      // this.$parent.$data.currentTab = this.$parent.$data.tabs[1]
       this.$emit("changeTab", x);
     },
 
