@@ -103,7 +103,7 @@
   <!-- final modal de nova meta -->
 
   <b-list-group>
-    <b-list-group-item v-for="(meta, x) in metas" :key="x" class="justify-content-between border-0">
+    <b-list-group-item v-for="(meta, x) in metas" :key="x" class="justify-content-between border-0 px-0 pb-0">
       <div>
         <b-card
           no-body

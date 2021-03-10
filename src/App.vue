@@ -1,10 +1,10 @@
 <template>
 <div id="app">
-  <b-container style="margin: 86px auto">
+  <b-container style="margin: 55px auto">
     <keep-alive>
       <component :is="currentTab.component.principal" v-bind="{...currentTab.component.props}" v-on:changeMsg3="setMessage" v-on:changeTab="changeTab" :x="tabSelecionada" class="tab"></component>
     </keep-alive>
-    <b-navbar fixed="bottom" toggleable="lg" variant="info">
+    <b-navbar fixed="bottom" toggleable="lg" variant="info" class="border-top border-light">
       <b-nav class="border-0 w-100 justify-content-between">
         <b-nav-item style="max-heignt: 56px" class="m-0" type="dark"
           v-for="tab in tabs"
@@ -208,5 +208,15 @@ export default {
 .cardMetaBody{
   max-height: calc(70vh - 30px);
   overflow-y: auto;
+}
+.custom-control-input:checked~.custom-control-label::before{
+  background-color: var(--info);
+  border-color: var(--info);
+}
+.custom-control-input:focus~.custom-control-label::before{
+  box-shadow:none
+}
+.custom-control-label::before{
+  border: var(--info);
 }
 </style>

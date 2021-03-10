@@ -1,33 +1,58 @@
 <template>
   <div class="metas">
     <Navbar/>
-    <b-container class="pl-0">
+    <b-container class="p-0">
+      <b-row>
+        <div>
+          <b-card
+            :title="msg[x].nome"
+            img-src="https://picsum.photos/600/300/?image=25"
+            img-alt="Image"
+            img-top
+            tag="article"
+            class="mb-2"
+          >
+            <b-card-text>
+              {{msg[x].descricao}}
+            </b-card-text>
+
+            <!-- <b-button href="#" variant="primary">Go somewhere</b-button> -->
+          </b-card>
+        </div>
+      </b-row>
+      <h4 class="mt-5 mb-3 pl-2">Metas secundárias:</h4>
       <b-row align-v="end">
-        <b-col cols="12" class="pl-0">
+        <b-col cols="12" class="p-0 mb-5">
           <div v-for="metaSecundaria, index in msg[x].metaSecundaria" :key="index" class="accordion" role="tablist">
-            <b-card no-body class="mb-1 border-0">
-              <b-card-header header-tag="header" class="p-0 border-0" role="tab">
-                <b-button block v-b-toggle="'accordion-' + index" variant="primary" class="text-left metaHeader">
+            <b-card no-body class="mb-2 border-0">
+              <b-card-header header-tag="header" class="pl-3 border-0" role="tab" header-bg-variant="info" header-text-variant="white">
+                <div class="text-left metaHeader">
                   <b-row align-v="center">
-                    <b-col cols="2">
-                      <b-form-checkbox size="lg" class="d-inline-block"></b-form-checkbox>
+                    <b-col cols="1" class="pl-4">
+                      <b-form-checkbox size="lg" class="d-inline-block" style="transform:scale(1.3)"></b-form-checkbox>
                     </b-col>
-                    <b-col cols="10">
+                    <b-col cols="8" class="text-nowrap text-truncate pl-4">
                       {{msg[x].metaSecundaria[index].nome}}
                     </b-col>
+                    <b-col cols="2" class="px-3 text-right ml-auto">
+                      <!-- action para expandir o accordeon component -->
+                      <!--  v-b-toggle="'accordion-' + index" -->
+                      <b-icon class="" font-scale="1.2" icon="box-arrow-in-up-right" text="dark" aria-label="Remove"></b-icon>
+                    </b-col>
                   </b-row>
-                </b-button>
+                </div>
               </b-card-header>
-              <b-collapse :id="'accordion-' + index" visible :accordion="'my-accordion' + index" role="tabpanel">
-                <b-card-body>
+              <b-collapse :id="'accordion-' + index" :accordion="'my-accordion' + index" role="tabpanel">
+                <b-card-body class="pb-0">
                   <b-card-text>
-                    <h5><b>Meta:</b></h5>
-                    <p>{{msg[x].metaSecundaria[index].descricao}}</p>
+                    <h6><b>Descrição:</b></h6>
+                    <p class="ml-3">{{msg[x].metaSecundaria[index].descricao}}</p>
                   </b-card-text>
+                  <hr>
                   <b-card-text>
                     <b-form-group
                       label="Tarefas:"
-                      label-size="lg"
+                      label-size="mg"
                       v-slot="{ tarefasMeta }"
                     >
                       <b-form-checkbox
@@ -37,6 +62,7 @@
                         :value="msg[x].metaSecundaria[index].nome + item.tarefa"
                         :aria-describedby="tarefasMeta"
                         name="tarefas"
+                        class="ml-3"
                       >
                         {{item.tarefa}}
                       </b-form-checkbox>
@@ -82,12 +108,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.accordion button{
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-}
 /* .metaHeader label.custom-control-label{
   overflow: hidden!important;
   text-overflow: ellipsis!important;

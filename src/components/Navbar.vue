@@ -1,6 +1,6 @@
 <template lang="html">
   <div>
-  <b-navbar toggleable="lg" type="dark" fixed="top" variant="info">
+  <b-navbar toggleable="lg" type="dark" fixed="top" variant="info" class="border-bottom  border-light">
     <b-navbar-toggle target="nav-collapse" class="border-0 pl-0"></b-navbar-toggle>
     <b-navbar-brand href="#">Realize App</b-navbar-brand>
       <b-icon v-b-modal.modal-1 font-scale="2" icon="plus" variant="light" aria-label="Add"></b-icon>
