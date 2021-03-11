@@ -205,10 +205,10 @@ export default {
 .modal-dialog-centered .modal-content  {
     margin: 60px 0;
 }
-.cardMetaBody{
+/* .cardMetaBody{
   max-height: calc(70vh - 30px);
   overflow-y: auto;
-}
+} */
 .custom-control-input:checked~.custom-control-label::before{
   background-color: var(--info);
   border-color: var(--info);
@@ -216,7 +216,7 @@ export default {
 .custom-control-input:focus~.custom-control-label::before{
   box-shadow:none
 }
-.custom-control-label::before{
-  border: var(--info);
+.metaHeader .custom-control-label::before{
+  border-color: var(--info);
 }
 </style>
