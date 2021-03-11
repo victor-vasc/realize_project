@@ -1,7 +1,7 @@
 <template>
 <div>
 
-  <Navbar />
+  <Navbar :navbarButtonIcon="navbarButton"/>
   <!-- inicio modal de nova meta -->
   <b-modal class="novaMetaModal" centered id="modal-1">
     <template #modal-title>
@@ -185,6 +185,7 @@ export default {
   },
   props: {
     metas: Array,
+    navbarButton: String,
   },
   watch: {
     // metaSelecionada: function(){

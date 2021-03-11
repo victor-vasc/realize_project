@@ -3,8 +3,12 @@
   <b-navbar toggleable="lg" type="dark" fixed="top" variant="info" class="border-bottom  border-light">
     <b-navbar-toggle target="nav-collapse" class="border-0 pl-0"></b-navbar-toggle>
     <b-navbar-brand href="#">Realize App</b-navbar-brand>
+    <div class="" v-if="navbarButtonIcon == 'Home'">
       <b-icon v-b-modal.modal-1 font-scale="2" icon="plus" variant="light" aria-label="Add"></b-icon>
-      <!-- <b-icon v-b-toggle="'accordion-' + index" font-scale="2" icon="x" variant="light" aria-label="Add"></b-icon> -->
+    </div>
+    <div class="" v-if="navbarButtonIcon == 'Metas'">
+      <b-icon v-b-toggle.accordion font-scale="1.3" icon="arrows-angle-expand" variant="light" aria-label="Add"></b-icon>
+    </div>
 
     <!-- <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
@@ -43,6 +47,9 @@
 <script>
 export default {
   name: 'Navbar',
+  props:{
+    navbarButtonIcon: String,
+  }
 }
 </script>
 

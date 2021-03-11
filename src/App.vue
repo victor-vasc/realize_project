@@ -2,7 +2,7 @@
 <div id="app">
   <b-container style="margin: 55px auto">
     <keep-alive>
-      <component :is="currentTab.component.principal" v-bind="{...currentTab.component.props}" v-on:changeMsg3="setMessage" v-on:changeTab="changeTab" :x="tabSelecionada" class="tab"></component>
+      <component :is="currentTab.component.principal" v-bind="{...currentTab.component.props}" v-on:changeMsg3="setMessage" v-on:changeTab="changeTab" :navbarButton="currentTab.name" :x="tabSelecionada" class="tab"></component>
     </keep-alive>
     <b-navbar fixed="bottom" toggleable="lg" variant="info" class="border-top border-light">
       <b-nav class="border-0 w-100 justify-content-between">
@@ -38,7 +38,7 @@ var metas = [
                { tarefa: 'Oran1ge'},
                { tarefa: 'App2le'},
                { tarefa: 'Pi3neapple' },
-               { tarefa: 'Gr4ape' },
+               { tarefa: 'Gr4ape', disabled: true },
              ],
           },
           {

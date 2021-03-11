@@ -1,10 +1,10 @@
 <template>
 <div class="metas">
-  <Navbar />
+  <Navbar :navbarButtonIcon="navbarButton"/>
   <b-container class="p-0">
     <b-row>
       <div>
-        <b-card :title="msg[x].nome" img-src="https://picsum.photos/600/300/?image=25" img-alt="Image" img-top tag="article" class="mb-2 shadow-sm ">
+        <b-card :title="msg[x].nome" img-src="../assets/Logo Grupo 6 fundo branco.png" img-alt="Image" img-top tag="article" class="mb-2 shadow-sm ">
           <b-card-text>
             {{msg[x].descricao}}
           </b-card-text>
@@ -36,7 +36,7 @@
                 </b-row>
               </div>
             </b-card-header>
-            <b-collapse :id="'accordion-' + index" :accordion="'my-accordion' + index" role="tabpanel">
+            <b-collapse id="accordion" :accordion="'my-accordion' + index" role="tabpanel">
               <b-card class="pb-0">
               <b-card-body class="p-0">
                   <b-card><b-card-title>Descrição:</b-card-title>
@@ -110,6 +110,7 @@ export default {
   props: {
     msg: Array,
     x: Number,
+    navbarButton: String,
   },
   data() {
     return {
