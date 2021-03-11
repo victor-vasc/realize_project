@@ -26,7 +26,7 @@
                     <b-form-checkbox size="lg" class="d-inline-block" style="transform:scale(1.3)"></b-form-checkbox>
                   </b-col>
                   <b-col cols="8" class="text-nowrap text-truncate pl-4">
-                    {{msg[x].metaSecundaria[index].nome}}
+                    <b>{{index + 1}}</b>. {{msg[x].metaSecundaria[index].nome}}
                   </b-col>
                   <b-col cols="2" class="px-3 text-right ml-auto" v-b-modal="'modalMetasSecundárias-' + index">
                     <!-- action para expandir o accordeon component -->
@@ -103,7 +103,7 @@
 import Navbar from './Navbar'
 
 export default {
-  name: 'HelloWorld',
+  name: 'Metas',
   components: {
     Navbar
   },

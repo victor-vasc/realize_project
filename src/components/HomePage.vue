@@ -23,7 +23,7 @@
           <b-card class="mb-2" v-for="(item, x) in meta.metaSecundaria" :key="x" header-tag="header" no-body>
             <template #header>
               <div class="d-flex align-items-center justify-content-between">
-                <h6 v-b-toggle="'accordion-' + x" class="mb-0 d-inline-block"><b>{{x}}.</b> {{meta.metaSecundaria[x].nome}}</h6>
+                <h6 v-b-toggle="'accordion-' + x" class="mb-0 d-inline-block"><b>{{x + 1}}.</b> {{meta.metaSecundaria[x].nome}}</h6>
                 <h6 class="mb-0 d-inline-block text-right" @click="deleteMetaSecundaria(x)">
                   <b-icon font-scale="1.6" icon="x" text="dark" aria-label="Remove"></b-icon>
                 </h6>
@@ -156,7 +156,7 @@
 <script>
 import Navbar from './Navbar'
 export default {
-  name: 'Test2',
+  name: 'HomePage',
   components: {
     // Test,
     Navbar,

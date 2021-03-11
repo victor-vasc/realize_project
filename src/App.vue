@@ -1,4 +1,4 @@
-<template>
+Metas<template>
 <div id="app">
   <b-container style="margin: 55px auto">
     <keep-alive>
@@ -18,13 +18,13 @@
       </b-nav>
     </b-navbar>
   </b-container>
-  <!-- <Test2 v-bind:metas="metas" v-on:changeMsg3="setMessage" :msg="itemText2" /> -->
+  <!-- <HomePage v-bind:metas="metas" v-on:changeMsg3="setMessage" :msg="itemText2" /> -->
 </div>
 </template>
 <script>
 // import Test from './components/Test.vue'
-import Test2 from './components/Test2'
-import HelloWorld2 from './components/HelloWorld2'
+import HomePage from './components/HomePage'
+import Metas from './components/Metas'
 import HelloWorld from './components/HelloWorld'
 
 var metas = [
@@ -37,8 +37,8 @@ var metas = [
             options: [
                { tarefa: 'Oran1ge'},
                { tarefa: 'App2le'},
-               { tarefa: 'Pi3neapple' },
-               { tarefa: 'Gr4ape', disabled: true },
+               { tarefa: 'Pi3neapple'},
+               { tarefa: 'Gr4ape'},
              ],
           },
           {
@@ -118,12 +118,12 @@ var itemText;
 var tabs = [{
     name: "Home",
     tabIcon: "house-door-fill",
-    component: { principal: Test2, props: {metas: metas, msg:itemText2}},
+    component: { principal: HomePage, props: {metas: metas, msg:itemText2}},
   },
   {
     name: "Metas",
     tabIcon: "list-ul",
-    component:  { principal: HelloWorld2, props: {msg: metas}},
+    component:  { principal: Metas, props: {msg: metas}},
   },
   {
     name: "Contato",
@@ -135,8 +135,8 @@ export default {
   nome: 'app',
   components: {
     // Test,
-    Test2,
-    HelloWorld2
+    HomePage,
+    Metas
   },
   data() {
     return {
