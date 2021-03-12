@@ -23,9 +23,10 @@
               <div class="text-left metaHeader">
                 <b-row align-v="center">
                   <b-col cols="1" class="pl-4">
-                    <b-form-checkbox size="lg" class="d-inline-block" style="transform:scale(1.3)"></b-form-checkbox>
+                    <b-form-checkbox size="lg" :value="index" v-model="metasSelecionadas" class="d-inline-block" style="transform:scale(1.3)"></b-form-checkbox>
+                    <!-- :disabled="metasSelecionadas.length <= metasSelecionadas.length + 1 && metasSelecionadas.indexOf(index) != -1" -->
                   </b-col>
-                  <b-col cols="8" class="text-nowrap text-truncate pl-4">
+                  <b-col cols="8" class="text-nowrap text-truncate d-inline-block pl-4">
                     <b>{{index + 1}}</b>. {{msg[x].metaSecundaria[index].nome}}
                   </b-col>
                   <b-col cols="2" class="px-3 text-right ml-auto" v-b-modal="'modalMetasSecundárias-' + index">
@@ -38,11 +39,17 @@
             </b-card-header>
             <b-collapse id="accordion" :accordion="'my-accordion' + index" role="tabpanel">
               <b-card class="pb-0">
+
               <b-card-body class="p-0">
-                  <b-card><b-card-title>Descrição:</b-card-title>
-                  <b-card-text class="border-bottom">{{msg[x].metaSecundaria[index].descricao}}</b-card-text></b-card>
+                    <b-card-title>{{index + 1}}. Meta:</b-card-title>
+                  <b-card-text class="">{{msg[x].metaSecundaria[index].nome}}</b-card-text>
+                    <hr class="my-3">
+                    <b-card-title>Descrição da meta:</b-card-title>
+                  <b-card-text class="">{{msg[x].metaSecundaria[index].descricao}}</b-card-text>
                 </b-card-body>
-                <hr>
+
+                <hr class="my-3">
+
                 <b-card>
                   <b-card-title>Tarefas:</b-card-title>
                   <b-card-text>
@@ -51,24 +58,25 @@
                         :aria-describedby="tarefasMeta" name="tarefas" class="ml-3">
                         {{item.tarefa}}
                       </b-form-checkbox>
-
                     </b-form-group>
                   </b-card-text>
                 </b-card>
+
               </b-card>
             </b-collapse>
           </b-card>
           <div class="">
             <b-modal :id="'modalMetasSecundárias-' + index" centered hide-footer title-class="text-nowrap text-truncate w-100">
               <template #modal-title>
-                <h5 class="text-truncate m-0 w-75">{{msg[x].metaSecundaria[index].nome}}</h5>
+                <h5 class="text-truncate m-0 w-75">Descrição:</h5>
               </template>
 
                 <b-card-body class="p-0">
-
-                      <b-card-title>Descrição:</b-card-title>
-                      <b-card-text>{{msg[x].metaSecundaria[index].descricao}}</b-card-text>
-
+                  <b-card-title>{{index + 1}}. Meta:</b-card-title>
+                <b-card-text class="">{{msg[x].metaSecundaria[index].nome}}</b-card-text>
+                  <hr class="my-3">
+                  <b-card-title>Descrição da meta:</b-card-title>
+                <b-card-text class="">{{msg[x].metaSecundaria[index].descricao}}</b-card-text>
                   <!-- <hr> -->
                   <b-card class="shadow-sm">
                     <b-card-title>Tarefas:</b-card-title>
@@ -114,26 +122,7 @@ export default {
   },
   data() {
     return {
-      selected: [], // Must be an array reference!
-      options: [{
-          text: 'Fazer um bolo',
-          value: 'orange'
-        },
-        {
-          text: 'Pesquisar receitas',
-          value: 'apple'
-        },
-        {
-          text: 'Comprar Ingredientes',
-          value: 'pineapple'
-        },
-        {
-          text: 'Assar o bolo',
-          value: 'grape'
-        }
-      ],
-      value: 33.333333333,
-      max: 50
+      metasSelecionadas: [], // Must be an array reference!
     }
   }
 }

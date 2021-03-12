@@ -5,7 +5,7 @@ Metas<template>
       <component :is="currentTab.component.principal" v-bind="{...currentTab.component.props}" v-on:changeMsg3="setMessage" v-on:changeTab="changeTab" :navbarButton="currentTab.name" :x="tabSelecionada" class="tab"></component>
     </keep-alive>
     <b-navbar fixed="bottom" toggleable="lg" variant="info" class="border-top border-light">
-      <b-nav class="border-0 w-100 justify-content-between">
+      <b-nav class="border-0 w-100 justify-content-around">
         <b-nav-item style="max-heignt: 56px" class="m-0" type="dark"
           v-for="tab in tabs"
           v-bind:key="tab.name"
@@ -25,93 +25,86 @@ Metas<template>
 // import Test from './components/Test.vue'
 import HomePage from './components/HomePage'
 import Metas from './components/Metas'
-import HelloWorld from './components/HelloWorld'
+// import HelloWorld from './components/HelloWorld'
 
 var metas = [
-         {nome: 'Fazer um bolo de chocolate',
-          descricao: 'É muito gostoso!',
+         {nome: 'Criar minha própria academia de jiu-jitsu',
+          descricao: 'Atuar como professor é um sonho que eu possuo, pois quero poder me relacionar com pessoas com mesmo hobby. Agora que finalmente possuo algum tempo livre de meu trabalho, vou dar início ao meu projeto de vida',
           metaSecundaria:[{
-            nome:'test22222211111111111111111111e1',
+            nome:'Aprender sobre gestão e planejamento de pequenos empreendimentos',
             descricao: 'test111111111111111111111e1',
             selected: [], // Must be an array reference!
             options: [
-               { tarefa: 'Oran1ge'},
-               { tarefa: 'App2le'},
-               { tarefa: 'Pi3neapple'},
-               { tarefa: 'Gr4ape'},
+               { tarefa: 'Procurar cursos e aulas sobre empreendedorismo'},
+               { tarefa: 'Realizar um planejamento e modelo de negócio'},
+               { tarefa: 'Aprender sobre gestão/gerenciamento'},
+               { tarefa: 'Procurar por investimentos'},
              ],
           },
           {
-            nome:'test22222222222222e2',
-            descricao: 'teste2',
+            nome:' Pesquisa de locação e mercado',
+            descricao: 'Para obter êxito na escolha do local, é importante, primeiramente, conhecer seu público alvo, pois além de influenciar na escolha do ponto comercial, faz parte do planejamento estratégico. O segundo passo é observar o fluxo de pessoas no local, tanto de pedestres quanto de carros. O próximo passo é avaliar a acessibilidade do ponto, ou seja, como chegar até o ponto comercial, a sua infraestrutura ao redor.',
             selected: [], // Must be an array reference!
             options: [
-               { tarefa: 'Ora5nge'},
-               { tarefa: 'Ap6ple'},
-               { tarefa: 'Pi7eapple' },
-               { tarefa: 'Gra8pe' },
+               { tarefa: 'Pesquisar possíveis imóveis para a academia'},
+               { tarefa: 'Pesquisar sobre o público presente dentro daquela região' },
+               { tarefa: 'Procurar por possíveis concorrentes após encontrar um imóvel'},
+               { tarefa: 'Avaliar os custos em relação a alugar ou comprar' },
              ],
           },
           {
-            nome:'test33333333333333e3',
-            descricao: 'teste3',
+            nome:'Procurar por profissionais e equipamentos',
+            descricao: 'Por mais que você se prepare para a abertura da empresa é bem provável que você se depare com um ambiente bem burocrático e complexo. Quanto mais você tentar encarar esse ambiente de maneira solitária, maior será a dor de cabeça. Sem contar que terá que contratar diversos serviços.',
             selected: [], // Must be an array reference!
             options: [
-               { tarefa: 'O9range'},
-               { tarefa: 'A12pple'},
-               { tarefa: 'Pin10eapple' },
-               { tarefa: 'Grap11e' },
+               { tarefa: 'Procurar por professores capacitados'},
+               { tarefa: 'Procurar por profissinais de administração e contabilidade'},
+               { tarefa: 'Procurar por uma equipe para realizar manutenções e limpeza dos equipamentos' },
              ],
           },
           {
-            nome:'teste4',
-            descricao: 'teste4',
+            nome:'Procurar pelas documentações necessárias',
+            descricao: 'Nenhuma descrição foi adicionada...',
             selected: [], // Must be an array reference!
-            options: [
-               { tarefa: 'Or12ange'},
-               { tarefa: 'App13le'},
-               { tarefa: 'Pin14eapple' },
-               { tarefa: 'Gra15pe' },
-             ],
+            options: [],
           },
           {
-            nome:'teste5',
-            descricao: 'teste5',
+            nome:'Marketing e divulgação',
+            descricao: 'Os canais de distribuição são os meios pelos quais o empreendedor entrega o seu serviço ao cliente final, no local certo e na hora esperada pelos clientes. É a resposta às seguintes perguntas: Como o serviço chega ao cliente? Ou, de modo geral, qual a estratégia da empresa para que o cliente chegue à sua empresa?',
             selected: [], // Must be an array reference!
             options: [
-               { tarefa: 'Orange'},
-               { tarefa: 'Apple'},
-               { tarefa: 'Pineapple' },
-               { tarefa: 'Grape' },
+               { tarefa: 'Contratar alguma empresa para realizar a divulgação da academia...'},
              ],
           }]
-        },{nome: 'Fazer um bolo de c2222222222hocolate',
-         descricao: 'É muito gostoso!',
-         metaSecundaria:[{
-           nome:'teste1',
-           descricao: 'teste1',
-           selected: [], // Must be an array reference!
-           options: [
-              { tarefa: 'Orange'},
-              { tarefa: 'Apple'},
-              { tarefa: 'Pineapple' },
-              { tarefa: 'Grape' },
-            ],
-         }]
-       },{nome: 'Fazer um bolo de c333333333333hocolate',
-        descricao: 'É muito gostoso!',
-        metaSecundaria:[{
-          nome:'teste1',
-          descricao: 'teste1',
-          selected: [], // Must be an array reference!
-          options: [
-             { tarefa: 'Orange'},
-             { tarefa: 'Apple'},
-             { tarefa: 'Pineapple' },
-             { tarefa: 'Grape' },
-           ],
-        }]
-      },
+        },
+      //   {nome: 'Fazer um bolo de c2222222222hocolate',
+      //    descricao: 'É muito gostoso!',
+      //    metaSecundaria:[{
+      //      nome:'teste1',
+      //      descricao: 'teste1',
+      //      selected: [], // Must be an array reference!
+      //      options: [
+      //         { tarefa: 'Orange'},
+      //         { tarefa: 'Apple'},
+      //         { tarefa: 'Pineapple' },
+      //         { tarefa: 'Grape' },
+      //       ],
+      //    }]
+      //  },
+      //  {nome: 'Fazer um bolo de c333333333333hocolate',
+      //   descricao: 'É muito gostoso!',
+      //   metaSecundaria:[{
+      //     nome:'teste1',
+      //     descricao: 'teste1',
+      //     selected: [], // Must be an array reference!
+      //     options: [
+      //        { tarefa: 'Orange'},
+      //        { tarefa: 'Apple'},
+      //        { tarefa: 'Pineapple' },
+      //        { tarefa: 'Grape' },
+      //      ],
+      //   }]
+      // },
       ];
 var itemText2;
 var itemText;
@@ -125,11 +118,11 @@ var tabs = [{
     tabIcon: "list-ul",
     component:  { principal: Metas, props: {msg: metas}},
   },
-  {
-    name: "Contato",
-    tabIcon: "chat-left-text-fill",
-    component:  { principal: HelloWorld, props: {msg: "Contato Página"}},
-  }
+  // {
+  //   name: "Contato",
+  //   tabIcon: "chat-left-text-fill",
+  //   component:  { principal: HelloWorld, props: {msg: "Contato Página"}},
+  // }
 ];
 export default {
   nome: 'app',
@@ -209,7 +202,7 @@ export default {
   max-height: calc(70vh - 30px);
   overflow-y: auto;
 } */
-.custom-control-input:checked~.custom-control-label::before{
+.custom-control-input:checked~.custom-control-label::before, .custom-checkbox .custom-control-input:disabled:checked~.custom-control-label::before{
   background-color: var(--info);
   border-color: var(--info);
 }

@@ -106,13 +106,17 @@
     <b-list-group-item v-for="(meta, x) in metas" :key="x" class="justify-content-between border-0 px-0 pb-0">
       <div>
         <b-card
-          no-body
-          class="overflow-hidden mb-3"
+          class="overflow-hidden mb-3 bg-info text-light"
           v-on:click="changeTab(x)"
-          style="max-width: 540px;"
+          text-variant="white"
          >
+         <b-card-title>
+           {{meta.nome}}
+         </b-card-title>
+         <b-card-sub-title sub-title-text-variant="white" class="text-nowrap d-block text-truncate">
+           {{meta.descricao}}
+         </b-card-sub-title>
          <!-- v-b-modal="String(x)" -->
-              <b-card-body v-bind:title="meta.nome" class="bg-info text-light">
                 <b-modal centered v-bind:id="String(x)" title="Descrição" body-class="cardMetaBody" footer-class="justify-content-start" >
                   <p><b>Meta</b><br>{{meta.nome}}</p>
                   <p><b>Descrição</b><br>{{meta.descricao}}</p>
@@ -146,7 +150,6 @@
                     </b-button>
                   </template>
                 </b-modal>
-              </b-card-body>
         </b-card>
       </div>
     </b-list-group-item>
