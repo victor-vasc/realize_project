@@ -23,12 +23,12 @@
               <div class="text-left metaHeader">
                 <b-row align-v="center">
                   <b-col cols="1" class="pl-4">
-                    <b-form-checkbox size="lg" :value="index" v-model="metasSelecionadas" class="d-inline-block" style="transform:scale(1.3)"></b-form-checkbox>
+                    <b-form-checkbox size="lg" :value="index" v-model="metasSelecionadas[index]" class="d-inline-block" style="transform:scale(1.3)">{{metasSelecionadas[index] == null || metasSelecionadas[index] === false ? "NAO" : "SIM"}}</b-form-checkbox>
                     <!-- :disabled="metasSelecionadas.length <= metasSelecionadas.length + 1 && metasSelecionadas.indexOf(index) != -1" -->
                   </b-col>
-                  <b-col cols="8" class="text-nowrap text-truncate d-inline-block pl-4">
+                  <!-- <b-col cols="8" class="text-nowrap text-truncate d-inline-block pl-4">
                     <b>{{index + 1}}</b>. {{msg[x].metaSecundaria[index].nome}}
-                  </b-col>
+                  </b-col> -->
                   <b-col cols="2" class="px-3 text-right ml-auto" v-b-modal="'modalMetasSecundárias-' + index">
                     <!-- action para expandir o accordeon component -->
                     <!--  v-b-toggle="'accordion-' + index" -->
