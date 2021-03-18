@@ -182,6 +182,7 @@ export default {
       meta: {
         nome: '',
         descricao: '',
+        metasCompletadas: [],
         metaSecundaria: []
       },
     }

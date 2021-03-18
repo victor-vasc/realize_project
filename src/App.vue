@@ -2,7 +2,7 @@ Metas<template>
 <div id="app">
   <b-container style="margin: 55px auto">
     <keep-alive>
-      <component :is="currentTab.component.principal" v-bind="{...currentTab.component.props}" v-on:changeMsg3="setMessage" v-on:changeTab="changeTab" :navbarButton="currentTab.name" :x="tabSelecionada" class="tab"></component>
+      <component :is="currentTab.component.principal" v-bind="{...currentTab.component.props}" v-on:changeMsg3="setMessage" v-on:changeTab="changeTab" :navbarButton="currentTab.name" :x="tabSelecionada" :metasSelecionadas="metasSelecionadas" class="tab"></component>
     </keep-alive>
     <b-navbar fixed="bottom" toggleable="lg" variant="info" class="border-top border-light">
       <b-nav class="border-0 w-100 justify-content-around">
@@ -30,6 +30,7 @@ import Metas from './components/Metas'
 var metas = [
          {nome: 'Criar minha própria academia de jiu-jitsu',
           descricao: 'Atuar como professor é um sonho que eu possuo, pois quero poder me relacionar com pessoas com mesmo hobby. Agora que finalmente possuo algum tempo livre de meu trabalho, vou dar início ao meu projeto de vida',
+          metasCompletadas: [],
           metaSecundaria:[{
             nome:'Aprender sobre gestão e planejamento de pequenos empreendimentos',
             descricao: 'test111111111111111111111e1',
@@ -139,6 +140,7 @@ export default {
       itemText2: itemText2,
       itemText: itemText,
       tabSelecionada: 0,
+      metasSelecionadas: [],
     }
   },
   methods: {

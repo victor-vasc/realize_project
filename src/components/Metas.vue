@@ -19,17 +19,26 @@
 
         <div v-for="metaSecundaria, index in msg[x].metaSecundaria" :key="index" class="accordion mb-3" role="tablist">
           <b-card no-body class="mb-2 border-0">
-            <b-card-header header-tag="header" class="shadow-sm mb-2 pl-3 mr-5 metaMotalButton" role="tab" header-bg-variant="info" header-text-variant="white">
+            <b-card-header header-tag="header" class="shadow-sm mb-2 pl-3 mr-5 metaModalButton" :class="{metaSecundariaActive: index < 1 + msg[x].metasCompletadas.length && index == msg[x].metasCompletadas.length}" role="tab" header-bg-variant="info" header-text-variant="white">
               <div class="text-left metaHeader">
                 <b-row align-v="center">
                   <b-col cols="1" class="pl-4">
-                    <b-form-checkbox size="lg" :value="index" v-model="metasSelecionadas[index]" class="d-inline-block" style="transform:scale(1.3)">{{metasSelecionadas[index] == null || metasSelecionadas[index] === false ? "NAO" : "SIM"}}</b-form-checkbox>
-                    <!-- :disabled="metasSelecionadas.length <= metasSelecionadas.length + 1 && metasSelecionadas.indexOf(index) != -1" -->
-                  </b-col>
-                  <!-- <b-col cols="8" class="text-nowrap text-truncate d-inline-block pl-4">
+                    <b-form-checkbox size="lg"
+                      :value="index"
+                      :disabled="index >= 1 + msg[x].metasCompletadas.length ||
+                                 msg[x].metasCompletadas.indexOf(index) != -1"
+                      v-model="msg[x].metasCompletadas[index]"
+                      class="d-inline-block"
+                      style="transform:scale(1.3)">
+                      <!-- {{msg[x].metasCompletadas[index] == null || msg[x].metasCompletadas[index] === false ? "NAO" : "SIM"}} -->
+                    </b-form-checkbox>
+                    <!-- :disabled="index >= 1 + metasSelecionadas.length ||
+                              metasSelecionadas.length <= metasSelecionadas.length + 1 &&
+                              metasSelecionadas.indexOf(index) != -1"  -->                  </b-col>
+                  <b-col cols="8" class="text-nowrap text-truncate d-inline-block pl-4">
                     <b>{{index + 1}}</b>. {{msg[x].metaSecundaria[index].nome}}
-                  </b-col> -->
-                  <b-col cols="2" class="px-3 text-right ml-auto" v-b-modal="'modalMetasSecundárias-' + index">
+                  </b-col>
+                  <b-col cols="2" class="px-3 text-right" v-b-modal="'modalMetasSecundárias-' + index">
                     <!-- action para expandir o accordeon component -->
                     <!--  v-b-toggle="'accordion-' + index" -->
                     <b-icon class="" font-scale="1" icon="arrow-up-right" text="dark" aria-label="Remove"></b-icon>
@@ -119,10 +128,10 @@ export default {
     msg: Array,
     x: Number,
     navbarButton: String,
+    metasSelecionadas: Array,
   },
   data() {
     return {
-      metasSelecionadas: [], // Must be an array reference!
     }
   }
 }
@@ -130,10 +139,21 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.metaMotalButton{
+.metaModalButton{
   border-top-right-radius: 2em!important;
   border-bottom-right-radius: 2em!important;
   border-top-left-radius: 0!important;
   border-bottom-left-radius: 0!important;
+}
+.metaSecundariaActive{
+  background-color: var(--info)!important;
+  font-weight: 600!important;
+  padding-top: 1.5rem!important;
+  padding-bottom: 1.5rem!important;
+  border-top-right-radius: 3em!important;
+  border-bottom-right-radius: 3em!important;
+  /* margin-top: 1.5rem!important;
+  margin-bottom: 1.5rem!important; */
+  margin-right: 1rem!important;
 }
 </style>
