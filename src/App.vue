@@ -33,7 +33,7 @@ var metas = [
           metasCompletadas: [],
           metaSecundaria:[{
             nome:'Aprender sobre gestão e planejamento de pequenos empreendimentos',
-            descricao: 'test111111111111111111111e1',
+            descricao: 'O empreendedor deve buscar contínuo aperfeiçoamento das atividades necessárias para a excelência do negócio, buscando informações em cursos, eventos relacionados ao tema, mídia especializada no assunto ou junto a profissionais que atuam na área. Além dessas características básicas é fundamental que os profissionais dessa área tenham habilidades tanto técnicas quanto humanas, visando a correta receptividade de seus clientes.',
             selected: [], // Must be an array reference!
             options: [
                { tarefa: 'Procurar cursos e aulas sobre empreendedorismo'},
