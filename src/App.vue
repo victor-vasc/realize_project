@@ -1,4 +1,4 @@
-Metas<template>
+<template>
 <div id="app">
   <b-container style="margin: 55px auto">
     <keep-alive>
